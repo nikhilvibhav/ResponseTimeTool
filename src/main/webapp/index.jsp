@@ -40,5 +40,13 @@
         <div> <%= loadTimePaxDetails.getPageTitle()%> </div><div> <%= loadTimePaxDetails.getPageLoadTime()%> ms</div>
         <div> <%= loadTimePayment.getPageTitle()%> </div><div> <%= loadTimePayment.getPageLoadTime()%> ms</div>
 
+        <br>
+        <hr>
+        
+        <div>Total Response Time for SBP: <%= (loadTimeInit.getPageLoadTime() + 
+                loadTimeHome.getPageLoadTime() + loadTimeOutbound.getPageLoadTime() 
+                + loadTimeInbound.getPageLoadTime() + loadTimeInsurance.getPageLoadTime() 
+                + loadTimeLogin.getPageLoadTime() + loadTimePaxDetails.getPageLoadTime()
+                + loadTimePayment.getPageLoadTime())/1000%> seconds</div>
     </body>
 </html>
