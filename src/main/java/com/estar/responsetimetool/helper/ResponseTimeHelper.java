@@ -2,7 +2,6 @@ package com.estar.responsetimetool.helper;
 
 import com.estar.responsetimetool.pojo.TimeToLoad;
 import java.util.HashMap;
-import java.util.Map;
 import org.apache.commons.lang3.time.StopWatch;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -34,7 +33,7 @@ public class ResponseTimeHelper {
 
     }
 
-    public Map initJourney() throws InterruptedException {
+    public TimeToLoad initJourney() throws InterruptedException {
         System.out.println("******************Init Journey******************");
 
         timeToLoad = new TimeToLoad();
@@ -51,32 +50,10 @@ public class ResponseTimeHelper {
         timeToLoad.setPageTitle(driver.getTitle());
         timeToLoad.setPageLoadTime(stopWatch.getTime());
 
-        pageLoadMap.put("Initial Journey", timeToLoad);
-
-        try {
-
-            homeJourney();
-            outboundJourney();
-            inboundJourney();
-            insuranceJourney();
-            userLoginJourney();
-            paxDetailsJourney();
-            paymentJourney();
-
-            driver.quit();
-
-            return pageLoadMap;
-        } catch (Exception E) {
-            System.out.println("Sorry the execution of the journey could not continue");
-            System.out.println(E.getMessage() + "\n");
-            
-            driver.quit();
-
-            return null;
-        }
+        return timeToLoad;
     }
 
-    public void homeJourney() throws InterruptedException {
+    public TimeToLoad homeJourney() throws InterruptedException {
         System.out.println("******************Home Journey******************");
 
         timeToLoad = new TimeToLoad();
@@ -99,10 +76,10 @@ public class ResponseTimeHelper {
         timeToLoad.setPageLoadTime(stopWatch.getTime());
         timeToLoad.setPageTitle(driver.getTitle());
 
-        pageLoadMap.put("Homepage Journey", timeToLoad);
+        return timeToLoad;
     }
 
-    public void outboundJourney() throws InterruptedException {
+    public TimeToLoad outboundJourney() throws InterruptedException {
         System.out.println("******************Outbound Journey******************");
 
         timeToLoad = new TimeToLoad();
@@ -134,10 +111,10 @@ public class ResponseTimeHelper {
         timeToLoad.setPageTitle(driver.getTitle());
         timeToLoad.setPageLoadTime(stopWatch.getTime());
 
-        pageLoadMap.put("Outbound Journey", timeToLoad);
+        return timeToLoad;
     }
 
-    public void inboundJourney() throws InterruptedException {
+    public TimeToLoad inboundJourney() throws InterruptedException {
         System.out.println("******************Inbound Journey******************");
 
         timeToLoad = new TimeToLoad();
@@ -173,11 +150,11 @@ public class ResponseTimeHelper {
         timeToLoad.setPageTitle(driver.getTitle());
         timeToLoad.setPageLoadTime(stopWatch.getTime());
 
-        pageLoadMap.put("Inbound Journey", timeToLoad);
+        return timeToLoad;
 
     }
 
-    public void insuranceJourney() throws InterruptedException {
+    public TimeToLoad insuranceJourney() throws InterruptedException {
         System.out.println("******************Insurance Journey******************");
 
         timeToLoad = new TimeToLoad();
@@ -213,10 +190,10 @@ public class ResponseTimeHelper {
         timeToLoad.setPageTitle(driver.getTitle());
         timeToLoad.setPageLoadTime(stopWatch.getTime());
 
-        pageLoadMap.put("Insurance Journey", timeToLoad);
+        return timeToLoad;
     }
 
-    public void userLoginJourney() throws InterruptedException {
+    public TimeToLoad userLoginJourney() throws InterruptedException {
         System.out.println("******************Login Journey******************");
 
         timeToLoad = new TimeToLoad();
@@ -243,10 +220,10 @@ public class ResponseTimeHelper {
         timeToLoad.setPageTitle(driver.getTitle());
         timeToLoad.setPageLoadTime(stopWatch.getTime());
 
-        pageLoadMap.put("User Login Journey", timeToLoad);
+        return timeToLoad;
     }
 
-    public void paxDetailsJourney() throws InterruptedException {
+    public TimeToLoad paxDetailsJourney() throws InterruptedException {
         System.out.println("******************Passenger Details Journey******************");
 
         timeToLoad = new TimeToLoad();
@@ -270,10 +247,10 @@ public class ResponseTimeHelper {
         timeToLoad.setPageTitle(driver.getTitle());
         timeToLoad.setPageLoadTime(stopWatch.getTime());
 
-        pageLoadMap.put("PAX Details Journey", timeToLoad);
+        return timeToLoad;
     }
 
-    public void paymentJourney() throws InterruptedException {
+    public TimeToLoad paymentJourney() throws InterruptedException {
         System.out.println("******************Payment Journey******************");
 
         timeToLoad = new TimeToLoad();
@@ -304,7 +281,9 @@ public class ResponseTimeHelper {
         timeToLoad.setPageTitle(driver.getTitle());
         timeToLoad.setPageLoadTime(stopWatch.getTime());
 
-        pageLoadMap.put("Payment Journey", timeToLoad);
+        driver.quit();
+
+        return timeToLoad;
 
     }
 }

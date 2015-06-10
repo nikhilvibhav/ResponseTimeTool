@@ -17,25 +17,15 @@
     </head>
     <%
         ResponseTimeHelper responseTimeHelper = new ResponseTimeHelper();
-        Map map = responseTimeHelper.initJourney();
 
-        TimeToLoad loadTimeInit;
-        TimeToLoad loadTimeHome;
-        TimeToLoad loadTimeOutbound;
-        TimeToLoad loadTimeInbound;
-        TimeToLoad loadTimeInsurance;
-        TimeToLoad loadTimeLogin;
-        TimeToLoad loadTimePaxDetails;
-        TimeToLoad loadTimePayment;
-
-        loadTimeInit = (TimeToLoad) map.get("Initial Journey");
-        loadTimeHome = (TimeToLoad) map.get("Homepage Journey");
-        loadTimeOutbound = (TimeToLoad) map.get("Outbound Journey");
-        loadTimeInbound = (TimeToLoad) map.get("Inbound Journey");
-        loadTimeInsurance = (TimeToLoad) map.get("Insurance Journey");
-        loadTimeLogin = (TimeToLoad) map.get("User Login Journey");
-        loadTimePaxDetails = (TimeToLoad) map.get("PAX Details Journey");
-        loadTimePayment = (TimeToLoad) map.get("Payment Journey");
+        TimeToLoad loadTimeInit = responseTimeHelper.initJourney();
+        TimeToLoad loadTimeHome = responseTimeHelper.homeJourney();
+        TimeToLoad loadTimeOutbound = responseTimeHelper.outboundJourney();
+        TimeToLoad loadTimeInbound = responseTimeHelper.inboundJourney();
+        TimeToLoad loadTimeInsurance = responseTimeHelper.insuranceJourney();
+        TimeToLoad loadTimeLogin = responseTimeHelper.userLoginJourney();
+        TimeToLoad loadTimePaxDetails = responseTimeHelper.paxDetailsJourney();
+        TimeToLoad loadTimePayment = responseTimeHelper.paymentJourney();
 
     %>
     <body>
