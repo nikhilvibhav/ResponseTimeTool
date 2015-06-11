@@ -6,7 +6,6 @@
 
 
 <%@page import="com.estar.responsetimetool.pojo.TimeToLoad"%>
-<%@page import="java.util.Map"%>
 <%@page import="com.estar.responsetimetool.helper.ResponseTimeHelper"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -31,14 +30,14 @@
     <body>
         <h1>Response Times for Eurostar.com</h1>
 
-        <div> <%= loadTimeInit.getPageTitle()%> </div><div> <%= loadTimeInit.getPageLoadTime()%> ms</div>
-        <div> <%= loadTimeHome.getPageTitle()%> </div><div> <%= loadTimeHome.getPageLoadTime()%> ms</div>
-        <div> <%= loadTimeOutbound.getPageTitle()%> </div><div> <%= loadTimeOutbound.getPageLoadTime()%> ms</div>
-        <div> <%= loadTimeInbound.getPageTitle()%> </div><div> <%= loadTimeInbound.getPageLoadTime()%> ms</div>
-        <div> <%= loadTimeInsurance.getPageTitle()%> </div><div> <%= loadTimeInsurance.getPageLoadTime()%> ms</div>
-        <div> <%= loadTimeLogin.getPageTitle()%> </div><div> <%= loadTimeLogin.getPageLoadTime()%> ms</div>
-        <div> <%= loadTimePaxDetails.getPageTitle()%> </div><div> <%= loadTimePaxDetails.getPageLoadTime()%> ms</div>
-        <div> <%= loadTimePayment.getPageTitle()%> </div><div> <%= loadTimePayment.getPageLoadTime()%> ms</div>
+        <div> <%= loadTimeInit.getPageTitle()%> &nbsp;&nbsp;&nbsp;&nbsp; <%= loadTimeInit.getPageLoadTime()%> ms</div>
+        <div> <%= loadTimeHome.getPageTitle()%> &nbsp;&nbsp;&nbsp;&nbsp; <%= loadTimeHome.getPageLoadTime()%> ms</div>
+        <div> <%= loadTimeOutbound.getPageTitle()%> &nbsp;&nbsp;&nbsp;&nbsp; <%= loadTimeOutbound.getPageLoadTime()%> ms</div>
+        <div> <%= loadTimeInbound.getPageTitle()%> &nbsp;&nbsp;&nbsp;&nbsp; <%= loadTimeInbound.getPageLoadTime()%> ms</div>
+        <div> <%= loadTimeInsurance.getPageTitle()%> &nbsp;&nbsp;&nbsp;&nbsp; <%= loadTimeInsurance.getPageLoadTime()%> ms</div>
+        <div> <%= loadTimeLogin.getPageTitle()%> &nbsp;&nbsp;&nbsp;&nbsp; <%= loadTimeLogin.getPageLoadTime()%> ms</div>
+        <div> <%= loadTimePaxDetails.getPageTitle()%> &nbsp;&nbsp;&nbsp;&nbsp; <%= loadTimePaxDetails.getPageLoadTime()%> ms</div>
+        <div> <%= loadTimePayment.getPageTitle()%> &nbsp;&nbsp;&nbsp;&nbsp; <%= loadTimePayment.getPageLoadTime()%> ms</div>
 
         <br>
         <hr>
