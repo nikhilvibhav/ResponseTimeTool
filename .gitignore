@@ -1,7 +1,8 @@
 # Created by https://www.gitignore.io
 
 #General
-target/*
+target/
+**/target/
 
 ### Eclipse ###
 *.pydevproject
@@ -69,7 +70,6 @@ hs_err_pid*
 
 
 ### Maven ###
-target/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
