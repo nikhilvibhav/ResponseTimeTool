@@ -1,7 +1,5 @@
 package com.estar.responsetimetool.helper;
 
-import com.estar.responsetimetool.pojo.TimeToLoad;
-import java.util.HashMap;
 import org.apache.commons.lang3.time.StopWatch;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,6 +8,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.estar.responsetimetool.pojo.TimeToLoad;
 
 /**
  * Created by nvibhav on 09-Jun-15.
@@ -20,7 +20,6 @@ public class ResponseTimeHelper {
     StopWatch stopWatch;
     WebElement element;
     TimeToLoad timeToLoad;
-    HashMap pageLoadMap;
 
     public ResponseTimeHelper() {
 
@@ -28,8 +27,6 @@ public class ResponseTimeHelper {
         driver = new FirefoxDriver();
         //Instantiate stopwatch
         stopWatch = new StopWatch();
-        //Instantiate pageLoadTime map
-        pageLoadMap = new HashMap();
 
     }
 
