@@ -1,6 +1,7 @@
 package com.estar.responsetimetool.helper;
 
 import java.io.File;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.time.StopWatch;
 import org.openqa.selenium.By;
@@ -17,12 +18,13 @@ import com.estar.responsetimetool.pojo.TimeToLoad;
 /**
  * Created by nvibhav on 09-Jun-15.
  */
+@SuppressWarnings("unused")
 public class ResponseTimeHelper {
 
-    WebDriver driver = null;
-    StopWatch stopWatch;
-    WebElement element;
-    TimeToLoad timeToLoad;
+    private WebDriver driver = null;
+    private StopWatch stopWatch = null;
+    private WebElement element = null;
+    private TimeToLoad timeToLoad = null;
 
     public ResponseTimeHelper() {
 
@@ -67,12 +69,13 @@ public class ResponseTimeHelper {
         stopWatch.start();
 
         // Wait for the page to load, timeout after 30 seconds
-        (new WebDriverWait(driver, 30)).until(new ExpectedCondition<Boolean>() {
+       (new WebDriverWait(driver, 30)).until(new ExpectedCondition<Boolean>() {
             @Override
             public Boolean apply(WebDriver d) {
                 return d.getTitle().toLowerCase().startsWith("trains to paris");
             }
         });
+        //driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 
         stopWatch.stop();
         System.out.println("Response Time to Page " + driver.getTitle() + " : " + stopWatch.getTime() + " ms\n");
@@ -92,14 +95,6 @@ public class ResponseTimeHelper {
         stopWatch.reset();
         element.click();
         stopWatch.start();
-
-        // Wait for the page to load, timeout after 30 seconds
-        (new WebDriverWait(driver, 30)).until(new ExpectedCondition<Boolean>() {
-            @Override
-            public Boolean apply(WebDriver d) {
-                return d.getTitle().toLowerCase().startsWith("trains to paris");
-            }
-        });
 
         // Wait for the page to load, timeout after 30 seconds
         (new WebDriverWait(driver, 30)).until(new ExpectedCondition<Boolean>() {
