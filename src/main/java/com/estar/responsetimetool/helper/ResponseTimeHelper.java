@@ -1,9 +1,12 @@
 package com.estar.responsetimetool.helper;
 
+import java.io.File;
+
 import org.apache.commons.lang3.time.StopWatch;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
@@ -16,7 +19,7 @@ import com.estar.responsetimetool.pojo.TimeToLoad;
  */
 public class ResponseTimeHelper {
 
-    WebDriver driver;
+    WebDriver driver = null;
     StopWatch stopWatch;
     WebElement element;
     TimeToLoad timeToLoad;
@@ -24,7 +27,11 @@ public class ResponseTimeHelper {
     public ResponseTimeHelper() {
 
         //Instantiate the selenium RC server
-        driver = new FirefoxDriver();
+        //FirefoxBinary binary = new FirefoxBinary(new File("/usr/local/firefox"));
+        //binary.setEnvironmentProperty("DISPLAY",System.getProperty("lmportal.xvfb.id",":99"));
+        //driver = new FirefoxDriver(binary , null);
+    	driver = new FirefoxDriver();
+    	
         //Instantiate stopwatch
         stopWatch = new StopWatch();
 
