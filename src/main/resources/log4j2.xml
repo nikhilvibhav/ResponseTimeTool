@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration status="INFO" package="ResponseTimeTool">
+	<Appenders>
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"/>
+		</Console>
+		<RollingFile name="responsetime-log" filename="${sys:catalina.home}/logs/responsetimetool/responsetimetool.log" immediateFlush="false" append="true"
+					 filePattern="${sys:catalina.home/logs/responsetimetool/responsetimetool-%d{yyyy-MM-dd}.log">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"/>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="24" modulate="true"/>	
+			</Policies>
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<Logger name="ResponseTimeTool" level="info">
+			<appender-ref ref="responsetime-log" level="info"/>
+		</Logger>
+		<Root level="info">
+			<appender-ref ref="console"/>
+		</Root>
+	</Loggers>
+</Configuration>

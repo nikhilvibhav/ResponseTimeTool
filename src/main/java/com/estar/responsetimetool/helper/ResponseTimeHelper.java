@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.time.StopWatch;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,6 +23,8 @@ import com.estar.responsetimetool.pojo.TimeToLoad;
 @SuppressWarnings("unused")
 public class ResponseTimeHelper {
 
+	final static Logger logger = LogManager.getLogger(com.estar.responsetimetool.helper.ResponseTimeHelper.class);
+	
     private WebDriver driver = null;
     private StopWatch stopWatch = null;
     private WebElement element = null;
@@ -40,7 +44,9 @@ public class ResponseTimeHelper {
     }
 
     public TimeToLoad initJourney() throws InterruptedException {
-        System.out.println("******************Init Journey******************");
+        //System.out.println("Init Journey");
+        
+        logger.info("Init Journey");
 
         timeToLoad = new TimeToLoad();
 
@@ -51,8 +57,10 @@ public class ResponseTimeHelper {
         element = driver.findElement(By.linkText("United Kingdom"));
 
         stopWatch.stop();
-        System.out.println("Response Time to Page " + driver.getTitle() + " : " + stopWatch.getTime() + " ms\n");
-
+        //System.out.println("Response Time to Page " + driver.getTitle() + " : " + stopWatch.getTime() + " ms\n");
+        
+        logger.info("Response Time to Page " + driver.getTitle() + " : " + stopWatch.getTime() + " ms");
+        
         timeToLoad.setPageTitle(driver.getTitle());
         timeToLoad.setPageLoadTime(stopWatch.getTime());
 
@@ -60,7 +68,9 @@ public class ResponseTimeHelper {
     }
 
     public TimeToLoad homeJourney() throws InterruptedException {
-        System.out.println("******************Home Journey******************");
+        //System.out.println("Home Journey");
+        
+        logger.info("Home Journey");
 
         timeToLoad = new TimeToLoad();
 
@@ -78,7 +88,9 @@ public class ResponseTimeHelper {
         //driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 
         stopWatch.stop();
-        System.out.println("Response Time to Page " + driver.getTitle() + " : " + stopWatch.getTime() + " ms\n");
+//        System.out.println("Response Time to Page " + driver.getTitle() + " : " + stopWatch.getTime() + " ms\n");
+
+        logger.info("Response Time to Page " + driver.getTitle() + " : " + stopWatch.getTime() + " ms");
 
         timeToLoad.setPageLoadTime(stopWatch.getTime());
         timeToLoad.setPageTitle(driver.getTitle());
@@ -87,7 +99,9 @@ public class ResponseTimeHelper {
     }
 
     public TimeToLoad outboundJourney() throws InterruptedException {
-        System.out.println("******************Outbound Journey******************");
+//        System.out.println("Outbound Journey");
+
+        logger.info("Outbound Journey");
 
         timeToLoad = new TimeToLoad();
 
@@ -105,7 +119,9 @@ public class ResponseTimeHelper {
         });
 
         stopWatch.stop();
-        System.out.println("Response Time to Page " + driver.getTitle() + " : " + stopWatch.getTime() + " ms\n");
+//        System.out.println("Response Time to Page " + driver.getTitle() + " : " + stopWatch.getTime() + " ms\n");
+
+        logger.info("Response Time to Page " + driver.getTitle() + " : " + stopWatch.getTime() + " ms");
 
         timeToLoad.setPageTitle(driver.getTitle());
         timeToLoad.setPageLoadTime(stopWatch.getTime());
@@ -114,7 +130,9 @@ public class ResponseTimeHelper {
     }
 
     public TimeToLoad inboundJourney() throws InterruptedException {
-        System.out.println("******************Inbound Journey******************");
+//        System.out.println("Inbound Journey");
+
+        logger.info("Inbound Journey");
 
         timeToLoad = new TimeToLoad();
 
@@ -144,7 +162,9 @@ public class ResponseTimeHelper {
         });
 
         stopWatch.stop();
-        System.out.println("Response Time to Page " + driver.getTitle() + " : " + stopWatch.getTime() + " ms\n");
+//        System.out.println("Response Time to Page " + driver.getTitle() + " : " + stopWatch.getTime() + " ms\n");
+
+        logger.info("Response Time to Page " + driver.getTitle() + " : " + stopWatch.getTime() + " ms");
 
         timeToLoad.setPageTitle(driver.getTitle());
         timeToLoad.setPageLoadTime(stopWatch.getTime());
@@ -154,7 +174,9 @@ public class ResponseTimeHelper {
     }
 
     public TimeToLoad insuranceJourney() throws InterruptedException {
-        System.out.println("******************Insurance Journey******************");
+//        System.out.println("Insurance Journey");
+
+        logger.info("Insurance Journey");
 
         timeToLoad = new TimeToLoad();
 
@@ -184,7 +206,9 @@ public class ResponseTimeHelper {
         });
 
         stopWatch.stop();
-        System.out.println("Response Time to Page " + driver.getTitle() + " : " + stopWatch.getTime() + " ms\n");
+//        System.out.println("Response Time to Page " + driver.getTitle() + " : " + stopWatch.getTime() + " ms\n");
+
+        logger.info("Response Time to Page " + driver.getTitle() + " : " + stopWatch.getTime() + " ms");
 
         timeToLoad.setPageTitle(driver.getTitle());
         timeToLoad.setPageLoadTime(stopWatch.getTime());
@@ -193,7 +217,9 @@ public class ResponseTimeHelper {
     }
 
     public TimeToLoad userLoginJourney() throws InterruptedException {
-        System.out.println("******************Login Journey******************");
+//        System.out.println("Login Journey");
+
+        logger.info("Login Journey");
 
         timeToLoad = new TimeToLoad();
 
@@ -214,7 +240,9 @@ public class ResponseTimeHelper {
         });
 
         stopWatch.stop();
-        System.out.println("Response Time to Page " + driver.getTitle() + " : " + stopWatch.getTime() + " ms\n");
+//        System.out.println("Response Time to Page " + driver.getTitle() + " : " + stopWatch.getTime() + " ms\n");
+
+        logger.info("Response Time to Page " + driver.getTitle() + " : " + stopWatch.getTime() + " ms");
 
         timeToLoad.setPageTitle(driver.getTitle());
         timeToLoad.setPageLoadTime(stopWatch.getTime());
@@ -223,7 +251,9 @@ public class ResponseTimeHelper {
     }
 
     public TimeToLoad paxDetailsJourney() throws InterruptedException {
-        System.out.println("******************Passenger Details Journey******************");
+//        System.out.println("Passenger Details Journey");
+        
+        logger.info("Passenger Details Journey");
 
         timeToLoad = new TimeToLoad();
 
@@ -241,7 +271,9 @@ public class ResponseTimeHelper {
         });
 
         stopWatch.stop();
-        System.out.println("Response Time to Page " + driver.getTitle() + " : " + stopWatch.getTime() + " ms\n");
+//        System.out.println("Response Time to Page " + driver.getTitle() + " : " + stopWatch.getTime() + " ms\n");
+
+        logger.info("Response Time to Page " + driver.getTitle() + " : " + stopWatch.getTime() + " ms");
 
         timeToLoad.setPageTitle(driver.getTitle());
         timeToLoad.setPageLoadTime(stopWatch.getTime());
@@ -250,13 +282,17 @@ public class ResponseTimeHelper {
     }
 
     public TimeToLoad paymentJourney() throws InterruptedException {
-        System.out.println("******************Payment Journey******************");
+//        System.out.println("Payment Journey");
+        
+        logger.info("Payment Journey");
 
         timeToLoad = new TimeToLoad();
 
         stopWatch.reset();
+        
         Select dropdown = new Select(driver.findElement(By.xpath("//*[@id='edit-adult-1-title']")));
         dropdown.selectByValue("Mr");
+        
         element = driver.findElement(By.xpath("//*[@id='edit-adult-1-first-name']"));
         element.sendKeys("John");
         element = driver.findElement(By.xpath("//*[@id='edit-adult-1-last-name']"));
@@ -275,7 +311,9 @@ public class ResponseTimeHelper {
         });
 
         stopWatch.stop();
-        System.out.println("Response Time to Page " + driver.getTitle() + " : " + stopWatch.getTime() + " ms\n");
+//        System.out.println("Response Time to Page " + driver.getTitle() + " : " + stopWatch.getTime() + " ms\n");
+        
+        logger.info("Response Time to Page " + driver.getTitle() + " : " + stopWatch.getTime() + " ms");
 
         timeToLoad.setPageTitle(driver.getTitle());
         timeToLoad.setPageLoadTime(stopWatch.getTime());
@@ -283,6 +321,5 @@ public class ResponseTimeHelper {
         driver.quit();
 
         return timeToLoad;
-
     }
 }
