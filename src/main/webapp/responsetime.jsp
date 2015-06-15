@@ -1,9 +1,8 @@
 <%-- 
-    Document   : index
+    Document   : responsetime
     Created on : Jun 9, 2015, 7:30:35 PM
     Author     : nvibhav
 --%>
-
 
 <%@page import="com.estar.responsetimetool.pojo.TimeToLoad"%>
 <%@page import="com.estar.responsetimetool.helper.ResponseTimeHelper"%>
@@ -21,17 +20,16 @@
 </head>
 <%
 	ResponseTimeHelper responseTimeHelper = new ResponseTimeHelper();
-
+	
 	TimeToLoad loadTimeInit = responseTimeHelper.initJourney();
 	TimeToLoad loadTimeHome = responseTimeHelper.homeJourney();
 	TimeToLoad loadTimeOutbound = responseTimeHelper.outboundJourney();
 	TimeToLoad loadTimeInbound = responseTimeHelper.inboundJourney();
-	TimeToLoad loadTimeInsurance = responseTimeHelper
-			.insuranceJourney();
+	TimeToLoad loadTimeInsurance = responseTimeHelper.insuranceJourney();
 	TimeToLoad loadTimeLogin = responseTimeHelper.userLoginJourney();
-	TimeToLoad loadTimePaxDetails = responseTimeHelper
-			.paxDetailsJourney();
+	TimeToLoad loadTimePaxDetails = responseTimeHelper.paxDetailsJourney();
 	TimeToLoad loadTimePayment = responseTimeHelper.paymentJourney();
+	
 %>
 <body class="center-align">
 
@@ -117,7 +115,7 @@
 	<br>
 	<br>
 	<br>
-
+	
 	<!-- Compiled and minified JavaScript -->
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
