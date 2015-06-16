@@ -6,6 +6,8 @@
 
 <%@page import="com.estar.responsetimetool.pojo.TimeToLoad"%>
 <%@page import="com.estar.responsetimetool.helper.ResponseTimeHelper"%>
+<%@page import="org.apache.logging.log4j.Logger"%>
+<%@page import="org.apache.logging.log4j.LogManager"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -18,9 +20,14 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/css/materialize.min.css">
 
 </head>
-<%
-	ResponseTimeHelper responseTimeHelper = new ResponseTimeHelper();
+<body class="center-align">
 	
+	<%
+	ResponseTimeHelper responseTimeHelper = new ResponseTimeHelper();
+	final Logger logger = LogManager.getLogger(getClass());
+	
+	logger.info("Entering ResponseTimeHelper class");
+		
 	TimeToLoad loadTimeInit = responseTimeHelper.initJourney();
 	TimeToLoad loadTimeHome = responseTimeHelper.homeJourney();
 	TimeToLoad loadTimeOutbound = responseTimeHelper.outboundJourney();
@@ -29,10 +36,9 @@
 	TimeToLoad loadTimeLogin = responseTimeHelper.userLoginJourney();
 	TimeToLoad loadTimePaxDetails = responseTimeHelper.paxDetailsJourney();
 	TimeToLoad loadTimePayment = responseTimeHelper.paymentJourney();
-	
-%>
-<body class="center-align">
-
+		
+	logger.info("Exiting ResponseTimeHelper class");
+	%>
 	<br>
 	<br>
 	<br>
@@ -108,7 +114,7 @@
 					.getPageLoadTime()) / 1000%> seconds
 		</b>
 	</h6>
-
+	
 	<br>
 	<br>
 	<br>

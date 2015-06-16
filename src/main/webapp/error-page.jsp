@@ -6,6 +6,8 @@
 
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@page isErrorPage="true"%>
+<%@page import="org.apache.logging.log4j.Logger"%>
+<%@page import="org.apache.logging.log4j.LogManager"%>
 
 <!DOCTYPE html>
 <html>
@@ -24,6 +26,12 @@
 	<br>
 	<br>
 	
+	<%
+		final Logger logger = LogManager.getLogger(getClass());
+	
+		logger.info("Inside error-page.jsp");
+	%>
+	
 	<h2>We're sorry, an error has occurred</h2>
 	
 	<br>
@@ -34,6 +42,9 @@
 		<div class="col s12 m12 l12">
 			<p><b>Exception:</b> <%= exception.getMessage() %></p>
 			<br>
+			<%
+				logger.error("Error: " + exception.getMessage());
+			%>
 			<br>
 			<p>Please check logs for more details</p>
 		</div>

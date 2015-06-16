@@ -25,5 +25,8 @@
 			<appender-ref ref="RollingFile"/>
 			<appender-ref ref="STDOUT"/>
 		</Root>
+		<Logger name="org.apache.jsp" level="error">
+			<appender-ref ref="RollingFile"/>
+		</Logger>
 	</Loggers>
 </Configuration>

@@ -49,26 +49,20 @@ public class ResponseTimeHelper {
 
         timeToLoad = new TimeToLoad();
 
-        try {
-        	//To visit Eurostar dot com
-        	driver.navigate().to("http://www.eurostar.com");
-        	stopWatch.start();
+        //To visit Eurostar dot com
+       	driver.navigate().to("http://www.eurostar.com");
+       	stopWatch.start();
 
-        	element = driver.findElement(By.linkText("United Kingdom"));
+       	element = driver.findElement(By.linkText("United Kingdom"));
 
-        	stopWatch.stop();
+       	stopWatch.stop();
         
-        	LOGGER.info("Response time for Init journey: " + stopWatch.getTime()+ " ms");
+       	LOGGER.info("Response time for Init journey: " + stopWatch.getTime()+ " ms");
         
-        	timeToLoad.setPageTitle(driver.getTitle());
-        	timeToLoad.setPageLoadTime(stopWatch.getTime());
+       	timeToLoad.setPageTitle(driver.getTitle());
+       	timeToLoad.setPageLoadTime(stopWatch.getTime());
 
-        	return timeToLoad;
-        } catch (Exception ex){
-        	LOGGER.error("An error occurred!! "+ ex);
-        	driver.quit();
-        	return null;
-        }
+       	return timeToLoad;
     }
 
     public TimeToLoad homeJourney() throws InterruptedException {
@@ -77,32 +71,25 @@ public class ResponseTimeHelper {
 
         timeToLoad = new TimeToLoad();
         
-        try {
-        	stopWatch.reset();
-        	element.click();
-        	stopWatch.start();
+       	stopWatch.reset();
+       	element.click();
+       	stopWatch.start();
 
-        	// Wait for the page to load, timeout after 30 seconds
-        	(new WebDriverWait(driver, 30)).until(new ExpectedCondition<Boolean>() {
-        		@Override
-        		public Boolean apply(WebDriver d) {
-        			return d.getTitle().toLowerCase().startsWith("trains to paris");
-        		}
-        	});
-        
-        	stopWatch.stop();
-        
-        	LOGGER.info("Response time for Home Journey: " + stopWatch.getTime() + " ms");
+       	// Wait for the page to load, timeout after 30 seconds
+       	(new WebDriverWait(driver, 30)).until(new ExpectedCondition<Boolean>() {
+       		@Override
+       		public Boolean apply(WebDriver d) {
+       			return d.getTitle().toLowerCase().startsWith("trains to paris");
+       		}
+       	});
+       
+       	stopWatch.stop();
+       
+       	LOGGER.info("Response time for Home Journey: " + stopWatch.getTime() + " ms");
+       	timeToLoad.setPageLoadTime(stopWatch.getTime());
+       	timeToLoad.setPageTitle(driver.getTitle());
 
-        	timeToLoad.setPageLoadTime(stopWatch.getTime());
-        	timeToLoad.setPageTitle(driver.getTitle());
-
-        	return timeToLoad;
-        } catch (Exception ex) {
-        	LOGGER.error("An error has occurred!! " + ex);
-        	driver.quit();
-        	return null;
-        }
+       	return timeToLoad;
     }
 
     public TimeToLoad outboundJourney() throws InterruptedException {
@@ -111,33 +98,27 @@ public class ResponseTimeHelper {
 
         timeToLoad = new TimeToLoad();
         
-        try {
-        	element = driver.findElement(By.xpath("//input[@value='Find trains' and @type='submit']"));
-        	stopWatch.reset();
-        	element.click();
-        	stopWatch.start();
+        element = driver.findElement(By.xpath("//input[@value='Find trains' and @type='submit']"));
+        stopWatch.reset();
+        element.click();
+        stopWatch.start();
 
-        	// Wait for the page to load, timeout after 30 seconds
-        	(new WebDriverWait(driver, 30)).until(new ExpectedCondition<Boolean>() {
-        		@Override
-        		public Boolean apply(WebDriver d) {
-        			return d.getTitle().toLowerCase().startsWith("outbound train | eurostar");
-        		}
-        	});
+        // Wait for the page to load, timeout after 30 seconds
+        (new WebDriverWait(driver, 30)).until(new ExpectedCondition<Boolean>() {
+        	@Override
+        	public Boolean apply(WebDriver d) {
+        		return d.getTitle().toLowerCase().startsWith("outbound train | eurostar");
+        	}
+        });
 
-        	stopWatch.stop();
+        stopWatch.stop();
 
-        	LOGGER.info("Response time for Outbound Journey: " + stopWatch.getTime() + " ms");
+        LOGGER.info("Response time for Outbound Journey: " + stopWatch.getTime() + " ms");
 
-        	timeToLoad.setPageTitle(driver.getTitle());
-        	timeToLoad.setPageLoadTime(stopWatch.getTime());
+        timeToLoad.setPageTitle(driver.getTitle());
+        timeToLoad.setPageLoadTime(stopWatch.getTime());
 
-        	return timeToLoad;
-        } catch (Exception ex) {
-        	LOGGER.error("An error has occurred!! " + ex);
-        	driver.quit();
-        	return null;
-        }
+        return timeToLoad;
     }
 
     public TimeToLoad inboundJourney() throws InterruptedException {
@@ -146,45 +127,39 @@ public class ResponseTimeHelper {
 
         timeToLoad = new TimeToLoad();
         
-        try {
-        	element = driver.findElement(By.xpath("//*[@id='s"
-        			+ "tandard-booking-path-daily-view-form']/div/div[3]/table/tbody/tr[2]/td[5]/div"));
-        	stopWatch.reset();
-        	element.click();
+        element = driver.findElement(By.xpath("//*[@id='s"
+        		+ "tandard-booking-path-daily-view-form']/div/div[3]/table/tbody/tr[2]/td[5]/div"));
+        stopWatch.reset();
+        element.click();
 
-        	(new WebDriverWait(driver, 5)).until(new ExpectedCondition<Boolean>() {
-        		@Override
-        		public Boolean apply(WebDriver webDriver) {
-        			final WebElement element = webDriver.findElement(By.xpath("//*[@id='dialog-element--2']"));
-        			return element.isEnabled();
+        (new WebDriverWait(driver, 5)).until(new ExpectedCondition<Boolean>() {
+        	@Override
+        	public Boolean apply(WebDriver webDriver) {
+        		final WebElement element = webDriver.findElement(By.xpath("//*[@id='dialog-element--2']"));
+        		return element.isEnabled();
+        	}
+        });
+
+        element = driver.findElement(By.xpath("//*[@id='dialog-element--2']"));
+        element.click();
+        stopWatch.start();
+
+        // Wait for the page to load, timeout after 30 seconds
+        (new WebDriverWait(driver, 30)).until(new ExpectedCondition<Boolean>() {
+        	@Override
+        	public Boolean apply(WebDriver d) {
+        		return d.getTitle().toLowerCase().startsWith("inbound train | eurostar");
         		}
-        	});
+        });
 
-        	element = driver.findElement(By.xpath("//*[@id='dialog-element--2']"));
-        	element.click();
-        	stopWatch.start();
+        stopWatch.stop();
 
-        	// Wait for the page to load, timeout after 30 seconds
-        	(new WebDriverWait(driver, 30)).until(new ExpectedCondition<Boolean>() {
-        		@Override
-        		public Boolean apply(WebDriver d) {
-        			return d.getTitle().toLowerCase().startsWith("inbound train | eurostar");
-        		}
-        	});
+        LOGGER.info("Response time for Inbound Journey: " + stopWatch.getTime() + " ms");
 
-        	stopWatch.stop();
+        timeToLoad.setPageTitle(driver.getTitle());
+        timeToLoad.setPageLoadTime(stopWatch.getTime());
 
-        	LOGGER.info("Response time for Inbound Journey: " + stopWatch.getTime() + " ms");
-
-        	timeToLoad.setPageTitle(driver.getTitle());
-        	timeToLoad.setPageLoadTime(stopWatch.getTime());
-
-        	return timeToLoad;
-        } catch (Exception ex) {
-        	LOGGER.error("An error has occurred!! " + ex);
-        	driver.quit();
-        	return null;
-        }
+        return timeToLoad;
     }
 
     public TimeToLoad insuranceJourney() throws InterruptedException {
@@ -193,45 +168,39 @@ public class ResponseTimeHelper {
 
         timeToLoad = new TimeToLoad();
 
-        try {
-        	element = driver.findElement(By.xpath("//*[@id='s"
-        			+ "tandard-booking-path-daily-view-form']/div/div[3]/table/tbody/tr[2]/td[5]/div"));
-        	stopWatch.reset();
-        	element.click();
+        element = driver.findElement(By.xpath("//*[@id='s"
+        		+ "tandard-booking-path-daily-view-form']/div/div[3]/table/tbody/tr[2]/td[5]/div"));
+        stopWatch.reset();
+        element.click();
 
-        	(new WebDriverWait(driver, 5)).until(new ExpectedCondition<Boolean>() {
-        		@Override
-        		public Boolean apply(WebDriver webDriver) {
-        			final WebElement element = webDriver.findElement(By.xpath("//*[@id='dialog-element']"));
-        			return element.isEnabled();
-        		}
-        	});
+        (new WebDriverWait(driver, 5)).until(new ExpectedCondition<Boolean>() {
+        	@Override
+        	public Boolean apply(WebDriver webDriver) {
+        		final WebElement element = webDriver.findElement(By.xpath("//*[@id='dialog-element']"));
+        		return element.isEnabled();
+        	}
+        });
 
-        	element = driver.findElement(By.xpath("//*[@id='dialog-element']"));
-        	element.click();
-        	stopWatch.start();
+        element = driver.findElement(By.xpath("//*[@id='dialog-element']"));
+        element.click();
+        stopWatch.start();
 
-        	// Wait for the page to load, timeout after 30 seconds
-        	(new WebDriverWait(driver, 30)).until(new ExpectedCondition<Boolean>() {
-        		@Override
-        		public Boolean apply(WebDriver d) {
-        			return d.getTitle().toLowerCase().startsWith("travel extras | eurostar");
-        		}
-        	});
+        // Wait for the page to load, timeout after 30 seconds
+        (new WebDriverWait(driver, 30)).until(new ExpectedCondition<Boolean>() {
+        	@Override
+        	public Boolean apply(WebDriver d) {
+        		return d.getTitle().toLowerCase().startsWith("travel extras | eurostar");
+        	}
+        });
 
-        	stopWatch.stop();
+        stopWatch.stop();
 
-        	LOGGER.info("Response time for Insurance Journey: " + stopWatch.getTime() + " ms");
+        LOGGER.info("Response time for Insurance Journey: " + stopWatch.getTime() + " ms");
 
-        	timeToLoad.setPageTitle(driver.getTitle());
-        	timeToLoad.setPageLoadTime(stopWatch.getTime());
+        timeToLoad.setPageTitle(driver.getTitle());
+        timeToLoad.setPageLoadTime(stopWatch.getTime());
 
-        	return timeToLoad;
-        } catch (Exception ex) {
-        	LOGGER.error("An error has occurred!! " + ex);
-        	driver.quit();
-        	return null;
-        }
+        return timeToLoad;
     }
 
     public TimeToLoad userLoginJourney() throws InterruptedException {
@@ -240,36 +209,30 @@ public class ResponseTimeHelper {
 
         timeToLoad = new TimeToLoad();
         
-        try {
-        	stopWatch.reset();
-        	element = driver.findElement(By.xpath("//*[@id='dialog-element--2']"));
-        	element.click();
+        stopWatch.reset();
+        element = driver.findElement(By.xpath("//*[@id='dialog-element--2']"));
+        element.click();
 
-        	element = driver.findElement(By.xpath("//*[@id='dialog-dialog-element--2']/div[2]/ul/li[1]/a"));
-        	element.click();
-        	stopWatch.start();
+        element = driver.findElement(By.xpath("//*[@id='dialog-dialog-element--2']/div[2]/ul/li[1]/a"));
+        element.click();
+        stopWatch.start();
 
-        	// Wait for the page to load, timeout after 30 seconds
-        	(new WebDriverWait(driver, 30)).until(new ExpectedCondition<Boolean>() {
-        		@Override
-        		public Boolean apply(WebDriver d) {
-        			return d.getTitle().toLowerCase().startsWith("login, create account");
-        		}
-        	});
+        // Wait for the page to load, timeout after 30 seconds
+        (new WebDriverWait(driver, 30)).until(new ExpectedCondition<Boolean>() {
+        	@Override
+        	public Boolean apply(WebDriver d) {
+        		return d.getTitle().toLowerCase().startsWith("login, create account");
+        	}
+        });
 
-        	stopWatch.stop();
+        stopWatch.stop();
 
-        	LOGGER.info("Response time for Login Journey: " + stopWatch.getTime() + " ms");
+        LOGGER.info("Response time for Login Journey: " + stopWatch.getTime() + " ms");
 
-        	timeToLoad.setPageTitle(driver.getTitle());
-        	timeToLoad.setPageLoadTime(stopWatch.getTime());
+        timeToLoad.setPageTitle(driver.getTitle());
+        timeToLoad.setPageLoadTime(stopWatch.getTime());
 
-        	return timeToLoad;
-        } catch (Exception ex) {
-        	LOGGER.error("An error has occurred!! " + ex);
-        	driver.quit();
-        	return null;
-        }
+        return timeToLoad;
     }
 
     public TimeToLoad paxDetailsJourney() throws InterruptedException {
@@ -278,33 +241,27 @@ public class ResponseTimeHelper {
 
         timeToLoad = new TimeToLoad();
 
-        try {
-        	stopWatch.reset();
-        	element = driver.findElement(By.xpath("//*[@id='dialog-element']"));
-        	element.click();
-        	stopWatch.start();
+        stopWatch.reset();
+        element = driver.findElement(By.xpath("//*[@id='dialog-element']"));
+        element.click();
+        stopWatch.start();
 
-        	// Wait for the page to load, timeout after 30 seconds
-        	(new WebDriverWait(driver, 30)).until(new ExpectedCondition<Boolean>() {
-        		@Override
-        		public Boolean apply(WebDriver d) {
-        			return d.getTitle().toLowerCase().startsWith("traveller details | eurostar");
-        		}
-        	});
+        // Wait for the page to load, timeout after 30 seconds
+        (new WebDriverWait(driver, 30)).until(new ExpectedCondition<Boolean>() {
+        	@Override
+        	public Boolean apply(WebDriver d) {
+        		return d.getTitle().toLowerCase().startsWith("traveller details | eurostar");
+        	}
+        });
 
-        	stopWatch.stop();
+        stopWatch.stop();
 
-        	LOGGER.info("Response time for PaxDetails Journey: " + stopWatch.getTime() + " ms");
+        LOGGER.info("Response time for PaxDetails Journey: " + stopWatch.getTime() + " ms");
 
-        	timeToLoad.setPageTitle(driver.getTitle());
-        	timeToLoad.setPageLoadTime(stopWatch.getTime());
+        timeToLoad.setPageTitle(driver.getTitle());
+        timeToLoad.setPageLoadTime(stopWatch.getTime());
 
-        	return timeToLoad;
-        } catch (Exception ex) {
-        	LOGGER.error("An error has occurred!! " + ex);
-        	driver.quit();
-        	return null;
-        }
+        return timeToLoad;
     }
 
     public TimeToLoad paymentJourney() throws InterruptedException {
@@ -313,43 +270,37 @@ public class ResponseTimeHelper {
 
         timeToLoad = new TimeToLoad();
 
-        try {
-        	stopWatch.reset();
+        stopWatch.reset();
         
-        	Select dropdown = new Select(driver.findElement(By.xpath("//*[@id='edit-adult-1-title']")));
-        	dropdown.selectByValue("Mr");
+       	Select dropdown = new Select(driver.findElement(By.xpath("//*[@id='edit-adult-1-title']")));
+       	dropdown.selectByValue("Mr");
         
-        	element = driver.findElement(By.xpath("//*[@id='edit-adult-1-first-name']"));
-        	element.sendKeys("John");
-        	element = driver.findElement(By.xpath("//*[@id='edit-adult-1-last-name']"));
-        	element.sendKeys("Smith");
+        element = driver.findElement(By.xpath("//*[@id='edit-adult-1-first-name']"));
+        element.sendKeys("John");
+        element = driver.findElement(By.xpath("//*[@id='edit-adult-1-last-name']"));
+        element.sendKeys("Smith");
 
-        	element = driver.findElement(By.xpath("//*[@id='dialog-element']"));
-        	element.click();
-        	stopWatch.start();
+        element = driver.findElement(By.xpath("//*[@id='dialog-element']"));
+        element.click();
+        stopWatch.start();
 
-        	// Wait for the page to load, timeout after 30 seconds
-        	(new WebDriverWait(driver, 30)).until(new ExpectedCondition<Boolean>() {
-        		@Override
-        		public Boolean apply(WebDriver d) {
-        			return d.getTitle().toLowerCase().startsWith("payment | eurostar");
-        		}
-        	});
+        // Wait for the page to load, timeout after 30 seconds
+        (new WebDriverWait(driver, 30)).until(new ExpectedCondition<Boolean>() {
+        	@Override
+        	public Boolean apply(WebDriver d) {
+        		return d.getTitle().toLowerCase().startsWith("payment | eurostar");
+        	}
+        });
 
-        	stopWatch.stop();
+        stopWatch.stop();
         
-        	LOGGER.info("Response time for Payment Journey: " + stopWatch.getTime() + " ms");
+       	LOGGER.info("Response time for Payment Journey: " + stopWatch.getTime() + " ms");
 
-        	timeToLoad.setPageTitle(driver.getTitle());
-        	timeToLoad.setPageLoadTime(stopWatch.getTime());
+       	timeToLoad.setPageTitle(driver.getTitle());
+        timeToLoad.setPageLoadTime(stopWatch.getTime());
 
-        	driver.quit();
+        driver.quit();
 
-        	return timeToLoad;
-        } catch (Exception ex) {
-        	LOGGER.error("An error has occurred!! " + ex);
-        	driver.quit();
-        	return null;
-        }
+        return timeToLoad;
     }
 }

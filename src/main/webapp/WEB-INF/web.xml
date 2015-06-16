@@ -2,17 +2,31 @@
 <web-app xmlns="http://java.sun.com/xml/ns/javaee" version="2.5"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance "
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	
 	<display-name>Response Time Tool</display-name>
+	
 	<error-page>
 		<exception-type>java.lang.Exception</exception-type>
 		<location>/error-page.jsp</location>
 	</error-page>
+	
 	<error-page>
 		<error-code>500</error-code>
 		<location>/error-page.jsp</location>
 	</error-page>
+	
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
 	
+	<context-param>
+       <param-name>log4jConfiguration</param-name>
+       <param-value>log4j2.xml</param-value>
+    </context-param>
+    
+    <context-param>
+        <param-name>isLog4jAutoInitializationDisabled</param-name>
+        <param-value>true</param-value>
+    </context-param>
+ 
 </web-app>
