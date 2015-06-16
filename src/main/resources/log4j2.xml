@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Configuration status="INFO" package="ResponseTimeTool">
+	<Properties>
+		<Property name="log-path">${sys:catalina.home}/logs/responsetimetool/</Property>
+		<Property name="pattern">%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p %c{1}:%L - %m%n</Property>
+	</Properties>
 	<Appenders>
-		<Console name="console" target="SYSTEM_OUT">
-			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"/>
+		<Console name="STDOUT" target="SYSTEM_OUT">
+			<PatternLayout pattern="${pattern}"/>
 		</Console>
-		<RollingFile name="responsetime-log" filename="${sys:catalina.home}/logs/responsetimetool/responsetimetool.log" immediateFlush="false" append="true"
-					 filePattern="${sys:catalina.home/logs/responsetimetool/responsetimetool-%d{yyyy-MM-dd}.log">
-			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"/>
+		<RollingFile name="RollingFile" filename="${log-path}/responsetimetool.log" immediateFlush="true" append="true"
+					 filePattern="${log-path}/responsetimetool-%d{yyyy-MM-dd}.log">
+			<PatternLayout>
+			 	<pattern>${pattern}</pattern>
+			</PatternLayout>
 			<Policies>
-				<TimeBasedTriggeringPolicy interval="24" modulate="true"/>	
+				<TimeBasedTriggeringPolicy />	
 			</Policies>
+			<DefaultRolloverStrategy max="20"/>
 		</RollingFile>
 	</Appenders>
 	<Loggers>
-		<Logger name="ResponseTimeTool" level="info">
-			<appender-ref ref="responsetime-log" level="info"/>
-		</Logger>
 		<Root level="info">
-			<appender-ref ref="console"/>
+			<appender-ref ref="RollingFile"/>
+			<appender-ref ref="STDOUT"/>
 		</Root>
 	</Loggers>
 </Configuration>
