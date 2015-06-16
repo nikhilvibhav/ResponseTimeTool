@@ -33,6 +33,9 @@
 	<div class="row" style="width:75%; margin-left:auto; margin-right:auto;">
 		<div class="col s12 m12 l12">
 			<p><b>Exception:</b> <%= exception.getMessage() %></p>
+			<br>
+			<br>
+			<p>Please check logs for more details</p>
 		</div>
 	</div>
 	
