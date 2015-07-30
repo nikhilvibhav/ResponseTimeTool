@@ -1,11 +1,10 @@
 <%-- 
-    Document   : responsetime
+    Document   : response_time_chrome
     Created on : Jun 9, 2015, 7:30:35 PM
     Author     : nvibhav
 --%>
 
 <%@page import="com.estar.responsetimetool.pojo.ResponseTime"%>
-<%@page import="com.estar.responsetimetool.helper.ResponseTimeChrome"%>
 <%@page import="com.estar.responsetimetool.helper.ResponseTimeChrome"%>
 <%@page import="org.apache.logging.log4j.Logger"%>
 <%@page import="org.apache.logging.log4j.LogManager"%>
@@ -24,10 +23,12 @@
 <body class="center-align">
 	
 	<%
-	ResponseTimeChrome responseTimeChrome = new ResponseTimeChrome("http://www.eurostar.com");
+	ResponseTimeChrome responseTimeChrome = new ResponseTimeChrome();
+	responseTimeChrome.setWebsiteName("http://www.eurostar.com");
+	
 	final Logger logger = LogManager.getLogger(getClass());
 	
-	logger.info("Entering responseTimeChrome class");
+	logger.info("Entering ResponseTimeChrome class");
 		
 	ResponseTime gatewayPage = responseTimeChrome.initJourney();
 	ResponseTime homePage = responseTimeChrome.homeJourney();
@@ -38,7 +39,7 @@
 	ResponseTime travelerDetailsPage = responseTimeChrome.paxDetailsJourney();
 	ResponseTime paymentPage = responseTimeChrome.paymentJourney();
 		
-	logger.info("Exiting responseTimeChrome class");
+	logger.info("Exiting ResponseTimeChrome class");
 	%>
 	<br>
 	<br>

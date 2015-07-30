@@ -34,7 +34,7 @@ public class ResponseTimeChrome {
     private String browserName = null;
     private String browserVersion = null;
 
-    public ResponseTimeChrome(String websiteName) {
+    public ResponseTimeChrome() {
 
         //Instantiate the selenium RC server
         System.setProperty("webdriver.chrome.driver", "D://Users//nvibhav//Documents//Code//chromedriver.exe");

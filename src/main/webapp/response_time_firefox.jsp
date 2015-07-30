@@ -1,12 +1,11 @@
 <%-- 
-    Document   : responsetime
+    Document   : response_time_firefox
     Created on : Jun 9, 2015, 7:30:35 PM
     Author     : nvibhav
 --%>
 
 <%@page import="com.estar.responsetimetool.pojo.ResponseTime"%>
 <%@page import="com.estar.responsetimetool.helper.ResponseTimeFirefox"%>
-<%@page import="com.estar.responsetimetool.helper.ResponseTimeChrome"%>
 <%@page import="org.apache.logging.log4j.Logger"%>
 <%@page import="org.apache.logging.log4j.LogManager"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -24,10 +23,12 @@
 <body class="center-align">
 	
 	<%
-	ResponseTimeFirefox responseTimeFirefox = new ResponseTimeFirefox("http://www.eurostar.com");
+	ResponseTimeFirefox responseTimeFirefox = new ResponseTimeFirefox();
+	responseTimeFirefox.setWebsiteName("http://www.eurostar.com");
+	
 	final Logger logger = LogManager.getLogger(getClass());
 	
-	logger.info("Entering responseTimeFirefox class");
+	logger.info("Entering ResponseTimeFirefox class");
 		
 	ResponseTime gatewayPage = responseTimeFirefox.initJourney();
 	ResponseTime homePage = responseTimeFirefox.homeJourney();
@@ -38,7 +39,7 @@
 	ResponseTime travelerDetailsPage = responseTimeFirefox.paxDetailsJourney();
 	ResponseTime paymentPage = responseTimeFirefox.paymentJourney();
 		
-	logger.info("Exiting responseTimeFirefox class");
+	logger.info("Exiting ResponseTimeFirefox class");
 	%>
 	<br>
 	<br>

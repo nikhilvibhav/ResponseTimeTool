@@ -37,7 +37,7 @@ public class ResponseTimeFirefox {
     private String browserName = null;
     private String browserVersion = null;
     
-	public ResponseTimeFirefox(String websiteName) {
+	public ResponseTimeFirefox() {
 
         //Instantiate the selenium RC server
         //FirefoxBinary binary = new FirefoxBinary(new File("/usr/local/firefox"));

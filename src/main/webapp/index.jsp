@@ -42,7 +42,11 @@
 		</button>
 	</form>
 	
-	<form action="responsetime.jsp">
+	<br>
+	<br>
+	<br>
+	
+	<form action="response_time_chrome.jsp">
 		<button class="btn waves-effect waves-light" type="submit">
 			Check Response Time on Chrome
 		</button>
