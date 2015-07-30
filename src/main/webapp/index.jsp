@@ -5,8 +5,9 @@
 --%>
 
 
-<%@page import="com.estar.responsetimetool.pojo.TimeToLoad"%>
-<%@page import="com.estar.responsetimetool.helper.ResponseTimeHelper"%>
+<%@page import="com.estar.responsetimetool.pojo.ResponseTime"%>
+<%@page import="com.estar.responsetimetool.helper.ResponseTimeFirefox"%>
+<%@page import="com.estar.responsetimetool.helper.ResponseTimeChrome"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -35,9 +36,16 @@
 	<br>
 	<br>
 
+	<form action="response_time_firefox.jsp">
+		<button class="btn waves-effect waves-light" type="submit">
+			Check Response Time on Firefox
+		</button>
+	</form>
+	
 	<form action="responsetime.jsp">
-		<button class="btn waves-effect waves-light" type="submit"
-			name="action">Check Response Time</button>
+		<button class="btn waves-effect waves-light" type="submit">
+			Check Response Time on Chrome
+		</button>
 	</form>
 
 	<!-- Compiled and minified JavaScript -->
