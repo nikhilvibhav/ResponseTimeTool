@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM 
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.dialect">
+			org.hibernate.mysql.dialect
+		</property>
+		<property name="hibernate.connection.driver_class">
+			com.mysql.jsbc.driver
+		</property>
+		
+		<!-- Database connection configurations -->
+		<property name="hibernate.connection.url">
+			jdbc:mysql://localhost/eurostar_dashboard
+		</property>
+		<property name="hibernate.connection.username">
+			drupal
+		</property>
+		<property name="hibernate.connection.password">
+			password
+		</property>
+		
+		<!-- List of XML mapping files -->
+		<mapping resource="ResponseTime.cfg.xml"/>
+	</session-factory>
+</hibernate-configuration>
