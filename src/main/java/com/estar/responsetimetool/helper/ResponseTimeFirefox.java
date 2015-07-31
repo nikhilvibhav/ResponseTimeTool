@@ -155,8 +155,8 @@ public class ResponseTimeFirefox {
 
         responseTime = new ResponseTime();
         
-        element = driver.findElement(By.xpath("//*[@id='s"
-        		+ "tandard-booking-path-daily-view-form']/div/div[3]/table/tbody/tr[2]/td[5]/div"));
+        element = driver.findElement(By.xpath("//*[@id"
+        		+ "='standard-booking-path-daily-view-form']/div/div[3]/table/tbody/tr[32]/td[7]/div"));
         stopWatch.reset();
         element.click();
 
@@ -202,8 +202,8 @@ public class ResponseTimeFirefox {
 
         responseTime = new ResponseTime();
 
-        element = driver.findElement(By.xpath("//*[@id='s"
-        		+ "tandard-booking-path-daily-view-form']/div/div[3]/table/tbody/tr[2]/td[5]/div"));
+        element = driver.findElement(By.xpath("//*[@id"
+        		+ "='standard-booking-path-daily-view-form']/div/div[3]/table/tbody/tr[38]/td[5]/div"));
         stopWatch.reset();
         element.click();
 

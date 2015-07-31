@@ -19,7 +19,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.estar.responsetimetool.pojo.ResponseTime;
 
 /**
- * Created by nvibhav on 09-Jun-15.
+ * Created by nvibhav on 30-Jul-15.
  */
 
 public class ResponseTimeChrome {
@@ -154,8 +154,8 @@ public class ResponseTimeChrome {
 
         responseTime = new ResponseTime();
 
-        element = driver.findElement(By.xpath("//*[@id='s"
-        		+ "tandard-booking-path-daily-view-form']/div/div[3]/table/tbody/tr[2]/td[5]/div"));
+        element = driver.findElement(By.xpath("//*[@id"
+        		+ "='standard-booking-path-daily-view-form']/div/div[3]/table/tbody/tr[32]/td[7]/div"));
         stopWatch.reset();
         element.click();
 
@@ -201,8 +201,8 @@ public class ResponseTimeChrome {
 
         responseTime = new ResponseTime();
 
-        element = driver.findElement(By.xpath("//*[@id='s"
-        		+ "tandard-booking-path-daily-view-form']/div/div[3]/table/tbody/tr[2]/td[5]/div"));
+        element = driver.findElement(By.xpath("//*[@id"
+        		+ "='standard-booking-path-daily-view-form']/div/div[3]/table/tbody/tr[38]/td[5]/div"));
         stopWatch.reset();
         element.click();
 
