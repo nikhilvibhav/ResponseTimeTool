@@ -2,24 +2,39 @@ package com.estar.responsetimetool.pojo;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import org.openqa.selenium.remote.SessionId;
 
 /**
  *
  * @author nvibhav
  */
+
+@Entity
+@Table(name = "site_response_tool")
 public class ResponseTime {
     
     //This class contains pojo methods for load times of each page in the standard
     //booking path
     
+	@Column(name="domain_name")
 	String domainName;
+	@Column(name="page_id")
 	String pageID;
+	@Column(name="browser_name")
 	String browserName;
+	@Column(name="browser_version")
 	String browserVersion;
+	@Column(name="session_id")
 	SessionId sessionID;
+	@Column(name="page_title")
     String pageTitle;
-    LocalDateTime dateAdded;
+	@Column(name="added_on")
+    LocalDateTime dateAdded; //added_on
+	@Column(name="response_time")
     Long responseTime;
     
     /**

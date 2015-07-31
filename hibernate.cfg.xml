@@ -4,25 +4,15 @@
 
 <hibernate-configuration>
 	<session-factory>
-		<property name="hibernate.dialect">
-			org.hibernate.mysql.dialect
-		</property>
-		<property name="hibernate.connection.driver_class">
-			com.mysql.jsbc.driver
-		</property>
-		
+		<property name="hibernate.dialect">org.hibernate.MySQLDialect</property>
+		<property name="hibernate.connection.driver_class">com.mysql.jsbc.Driver</property>
 		<!-- Database connection configurations -->
-		<property name="hibernate.connection.url">
-			jdbc:mysql://localhost/eurostar_dashboard
-		</property>
-		<property name="hibernate.connection.username">
-			drupal
-		</property>
-		<property name="hibernate.connection.password">
-			password
-		</property>
-		
+		<property name="hibernate.connection.url">jdbc:mysql://localhost/eurostar_dashboard</property>
+		<property name="hibernate.connection.username">drupal</property>
+		<property name="hibernate.connection.password">password</property>
+		<property name="show_sql">true</property>
+		<property name="hbm2ddl.auto">update</property>
 		<!-- List of XML mapping files -->
-		<mapping resource="ResponseTime.cfg.xml"/>
+		<mapping class="com.estar.responsetimetool.pojo.ResponseTime"/>
 	</session-factory>
 </hibernate-configuration>

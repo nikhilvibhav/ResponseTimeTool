@@ -32,10 +32,12 @@ public class ResponseTimeFirefox {
     private RemoteWebDriver driver = null;
     private StopWatch stopWatch = null;
     private WebElement element = null;
-    private ResponseTime responseTime = null;
     private String websiteName = null;
     private String browserName = null;
     private String browserVersion = null;
+    
+    private ResponseTime responseTime = null;
+    private HibernateHelper dbHelper = null;
     
 	public ResponseTimeFirefox() {
 
@@ -77,6 +79,8 @@ public class ResponseTimeFirefox {
        	responseTime.setBrowserVersion(getBrowserVersion());
        	responseTime.setDomainName(getWebsiteName());
        	
+       	dbHelper.insertIntoDB(responseTime);
+       	
        	return responseTime;
     }
 
@@ -111,6 +115,8 @@ public class ResponseTimeFirefox {
        	responseTime.setBrowserVersion(getBrowserVersion());
        	responseTime.setDomainName(getWebsiteName());
 
+       	dbHelper.insertIntoDB(responseTime);
+       	
        	return responseTime;
     }
 
@@ -146,6 +152,8 @@ public class ResponseTimeFirefox {
        	responseTime.setBrowserVersion(getBrowserVersion());
        	responseTime.setDomainName(getWebsiteName());
 
+       	dbHelper.insertIntoDB(responseTime);
+       	
         return responseTime;
     }
 
@@ -193,6 +201,8 @@ public class ResponseTimeFirefox {
        	responseTime.setBrowserVersion(getBrowserVersion());
        	responseTime.setDomainName(getWebsiteName());
 
+       	dbHelper.insertIntoDB(responseTime);
+       	
         return responseTime;
     }
 
@@ -240,6 +250,8 @@ public class ResponseTimeFirefox {
        	responseTime.setBrowserVersion(getBrowserVersion());
        	responseTime.setDomainName(getWebsiteName());
 
+       	dbHelper.insertIntoDB(responseTime);
+       	
         return responseTime;
     }
 
@@ -278,6 +290,8 @@ public class ResponseTimeFirefox {
        	responseTime.setBrowserVersion(getBrowserVersion());
        	responseTime.setDomainName(getWebsiteName());
 
+       	dbHelper.insertIntoDB(responseTime);
+       	
         return responseTime;
     }
 
@@ -313,6 +327,8 @@ public class ResponseTimeFirefox {
        	responseTime.setBrowserVersion(getBrowserVersion());
        	responseTime.setDomainName(getWebsiteName());
 
+       	dbHelper.insertIntoDB(responseTime);
+       	
         return responseTime;
     }
 
@@ -357,6 +373,8 @@ public class ResponseTimeFirefox {
        	responseTime.setBrowserVersion(getBrowserVersion());
        	responseTime.setDomainName(getWebsiteName());
 
+       	dbHelper.insertIntoDB(responseTime);
+       	
         driver.quit();
 
         return responseTime;
