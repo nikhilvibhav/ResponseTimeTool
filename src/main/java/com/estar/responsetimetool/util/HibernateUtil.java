@@ -23,8 +23,7 @@ public class HibernateUtil {
 		
 		try {
 			//Create SessionFactory from hibernate.cfg.xml
-			Configuration configuration = new Configuration();
-			configuration.configure();
+			Configuration configuration = new Configuration().configure("hibernate.cfg.xml");
 
 			serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
 

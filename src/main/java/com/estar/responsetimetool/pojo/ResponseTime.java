@@ -1,12 +1,11 @@
 package com.estar.responsetimetool.pojo;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.openqa.selenium.remote.SessionId;
 
 /**
  *
@@ -19,7 +18,11 @@ public class ResponseTime {
     
     //This class contains pojo methods for load times of each page in the standard
     //booking path
-    
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="id")
+    int id;
 	@Column(name="domain_name")
 	String domainName;
 	@Column(name="page_id")
@@ -29,13 +32,13 @@ public class ResponseTime {
 	@Column(name="browser_version")
 	String browserVersion;
 	@Column(name="session_id")
-	SessionId sessionID;
+	String sessionID;
 	@Column(name="page_title")
     String pageTitle;
 	@Column(name="added_on")
-    LocalDateTime dateAdded; //added_on
+    String dateAdded; //added_on
 	@Column(name="response_time")
-    Long responseTime;
+    String responseTime;
     
     /**
 	 * @return the domainName
@@ -88,25 +91,25 @@ public class ResponseTime {
 	/**
 	 * @return the sessionID
 	 */
-	public SessionId getSessionID() {
+	public String getSessionID() {
 		return sessionID;
 	}
 	/**
 	 * @param sessionID the sessionID to set
 	 */
-	public void setSessionID(SessionId sessionID) {
+	public void setSessionID(String sessionID) {
 		this.sessionID = sessionID;
 	}
 	/**
 	 * @return the dateAdded
 	 */
-	public LocalDateTime getDateAdded() {
+	public String getDateAdded() {
 		return dateAdded;
 	}
 	/**
 	 * @param dateAdded the dateAdded to set
 	 */
-	public void setDateAdded(LocalDateTime dateAdded) {
+	public void setDateAdded(String dateAdded) {
 		this.dateAdded = dateAdded;
 	}
 	/**
@@ -124,13 +127,25 @@ public class ResponseTime {
 	/**
 	 * @return the responseTime
 	 */
-	public Long getResponseTime() {
+	public String getResponseTime() {
 		return responseTime;
 	}
 	/**
 	 * @param responseTime the responseTime to set
 	 */
-	public void setResponseTime(Long responseTime) {
+	public void setResponseTime(String responseTime) {
 		this.responseTime = responseTime;
+	}
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
 	}
 }

@@ -106,14 +106,14 @@
 	<br>
 
 	<h6>
-		<b> Total Response Time for SBP: <%=(gatewayPage.getResponseTime()
-					+ homePage.getResponseTime()
-					+ outboundPage.getResponseTime()
-					+ inboundPage.getResponseTime()
-					+ loadTimeInsurance.getResponseTime()
-					+ loginPage.getResponseTime()
-					+ travelerDetailsPage.getResponseTime() + paymentPage
-					.getResponseTime()) / 1000%> seconds
+		<b> Total Response Time for SBP: <%=(Long.parseLong(gatewayPage.getResponseTime())
+					+ Long.parseLong(homePage.getResponseTime())
+					+ Long.parseLong(outboundPage.getResponseTime())
+					+ Long.parseLong(inboundPage.getResponseTime())
+					+ Long.parseLong(loadTimeInsurance.getResponseTime())
+					+ Long.parseLong(loginPage.getResponseTime())
+					+ Long.parseLong(travelerDetailsPage.getResponseTime())
+					+ Long.parseLong(paymentPage.getResponseTime())) / 1000%> seconds
 		</b>
 	</h6>
 	

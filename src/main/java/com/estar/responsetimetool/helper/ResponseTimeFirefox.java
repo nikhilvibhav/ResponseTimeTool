@@ -2,11 +2,15 @@ package com.estar.responsetimetool.helper;
 
 import java.io.File;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
+
+import javax.swing.text.DateFormatter;
 
 import org.apache.commons.lang3.time.StopWatch;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.poi.hssf.util.HSSFColor.BROWN;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.JavascriptExecutor;
@@ -20,6 +24,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.estar.responsetimetool.pojo.ResponseTime;
+import com.google.common.base.Objects;
 
 /**
  * Created by nvibhav on 09-Jun-15.
@@ -32,12 +37,12 @@ public class ResponseTimeFirefox {
     private RemoteWebDriver driver = null;
     private StopWatch stopWatch = null;
     private WebElement element = null;
-    private String websiteName = null;
-    private String browserName = null;
-    private String browserVersion = null;
+    private String websiteName;
+    private String browserName;
+    private String browserVersion;
     
     private ResponseTime responseTime = null;
-    private HibernateHelper dbHelper = null;
+    private DateTimeFormatter formatter = null;
     
 	public ResponseTimeFirefox() {
 
@@ -49,8 +54,13 @@ public class ResponseTimeFirefox {
     	
         //Instantiate stopwatch
         stopWatch = new StopWatch();
-        this.setWebsiteName(websiteName);
         
+        //set date time pattern
+        formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"); 
+        
+        //set browser name and version
+        browserDetails();
+    	    
         LOGGER.info("Running test on Firefox");
     }
 
@@ -71,15 +81,15 @@ public class ResponseTimeFirefox {
        	LOGGER.info("Response time for Init journey: " + stopWatch.getTime()+ " ms");
         
        	responseTime.setPageTitle(driver.getTitle());
-       	responseTime.setResponseTime(stopWatch.getTime());
-       	responseTime.setSessionID(driver.getSessionId());
-       	responseTime.setDateAdded(LocalDateTime.now());
+       	responseTime.setResponseTime(String.valueOf(stopWatch.getTime()));
+       	responseTime.setSessionID(driver.getSessionId().toString());
+       	responseTime.setDateAdded(LocalDateTime.now().format(formatter));
        	responseTime.setPageID("gateway");
-       	responseTime.setBrowserName(getBrowserName());
-       	responseTime.setBrowserVersion(getBrowserVersion());
-       	responseTime.setDomainName(getWebsiteName());
-       	
-       	dbHelper.insertIntoDB(responseTime);
+       	responseTime.setBrowserName(browserName);
+       	responseTime.setBrowserVersion(browserVersion);
+       	responseTime.setDomainName(websiteName);
+       	  	
+       	HibernateHelper.insertIntoDB(responseTime);
        	
        	return responseTime;
     }
@@ -107,15 +117,15 @@ public class ResponseTimeFirefox {
        	LOGGER.info("Response time for Home Journey: " + stopWatch.getTime() + " ms");
        	
        	responseTime.setPageTitle(driver.getTitle());
-       	responseTime.setResponseTime(stopWatch.getTime());
-       	responseTime.setSessionID(driver.getSessionId());
-       	responseTime.setDateAdded(LocalDateTime.now());
+       	responseTime.setResponseTime(String.valueOf(stopWatch.getTime()));
+       	responseTime.setSessionID(driver.getSessionId().toString());
+       	responseTime.setDateAdded(LocalDateTime.now().format(formatter));
        	responseTime.setPageID("homepage");
-       	responseTime.setBrowserName(getBrowserName());
-       	responseTime.setBrowserVersion(getBrowserVersion());
-       	responseTime.setDomainName(getWebsiteName());
+       	responseTime.setBrowserName(browserName);
+       	responseTime.setBrowserName(browserVersion);
+       	responseTime.setDomainName(websiteName);
 
-       	dbHelper.insertIntoDB(responseTime);
+       	HibernateHelper.insertIntoDB(responseTime);
        	
        	return responseTime;
     }
@@ -144,15 +154,15 @@ public class ResponseTimeFirefox {
         LOGGER.info("Response time for Outbound Journey: " + stopWatch.getTime() + " ms");
 
         responseTime.setPageTitle(driver.getTitle());
-       	responseTime.setResponseTime(stopWatch.getTime());
-       	responseTime.setSessionID(driver.getSessionId());
-       	responseTime.setDateAdded(LocalDateTime.now());
+        responseTime.setResponseTime(String.valueOf(stopWatch.getTime()));
+       	responseTime.setSessionID(driver.getSessionId().toString());
+       	responseTime.setDateAdded(LocalDateTime.now().format(formatter));
        	responseTime.setPageID("outbound");
-       	responseTime.setBrowserName(getBrowserName());
-       	responseTime.setBrowserVersion(getBrowserVersion());
-       	responseTime.setDomainName(getWebsiteName());
+       	responseTime.setBrowserName(browserName);
+       	responseTime.setBrowserName(browserVersion);
+       	responseTime.setDomainName(websiteName);
 
-       	dbHelper.insertIntoDB(responseTime);
+       	HibernateHelper.insertIntoDB(responseTime);
        	
         return responseTime;
     }
@@ -163,8 +173,7 @@ public class ResponseTimeFirefox {
 
         responseTime = new ResponseTime();
         
-        element = driver.findElement(By.xpath("//*[@id"
-        		+ "='standard-booking-path-daily-view-form']/div/div[3]/table/tbody/tr[32]/td[7]/div"));
+        element = driver.findElement(By.xpath("//*[@id='standard-booking-path-daily-view-form']/div/div[3]/table/tbody/tr[8]/td[7]"));
         stopWatch.reset();
         element.click();
 
@@ -193,15 +202,15 @@ public class ResponseTimeFirefox {
         LOGGER.info("Response time for Inbound Journey: " + stopWatch.getTime() + " ms");
 
         responseTime.setPageTitle(driver.getTitle());
-       	responseTime.setResponseTime(stopWatch.getTime());
-       	responseTime.setSessionID(driver.getSessionId());
-       	responseTime.setDateAdded(LocalDateTime.now());
+        responseTime.setResponseTime(String.valueOf(stopWatch.getTime()));
+       	responseTime.setSessionID(driver.getSessionId().toString());
+       	responseTime.setDateAdded(LocalDateTime.now().format(formatter));
        	responseTime.setPageID("inbound");
-       	responseTime.setBrowserName(getBrowserName());
-       	responseTime.setBrowserVersion(getBrowserVersion());
-       	responseTime.setDomainName(getWebsiteName());
+       	responseTime.setBrowserName(browserName);
+       	responseTime.setBrowserName(browserVersion);
+       	responseTime.setDomainName(websiteName);
 
-       	dbHelper.insertIntoDB(responseTime);
+       	HibernateHelper.insertIntoDB(responseTime);
        	
         return responseTime;
     }
@@ -212,8 +221,7 @@ public class ResponseTimeFirefox {
 
         responseTime = new ResponseTime();
 
-        element = driver.findElement(By.xpath("//*[@id"
-        		+ "='standard-booking-path-daily-view-form']/div/div[3]/table/tbody/tr[38]/td[5]/div"));
+        element = driver.findElement(By.xpath("//*[@id='standard-booking-path-daily-view-form']/div/div[3]/table/tbody/tr[8]/td[5]"));
         stopWatch.reset();
         element.click();
 
@@ -242,15 +250,15 @@ public class ResponseTimeFirefox {
         LOGGER.info("Response time for Insurance Journey: " + stopWatch.getTime() + " ms");
 
         responseTime.setPageTitle(driver.getTitle());
-       	responseTime.setResponseTime(stopWatch.getTime());
-       	responseTime.setSessionID(driver.getSessionId());
-       	responseTime.setDateAdded(LocalDateTime.now());
+        responseTime.setResponseTime(String.valueOf(stopWatch.getTime()));
+       	responseTime.setSessionID(driver.getSessionId().toString());
+       	responseTime.setDateAdded(LocalDateTime.now().format(formatter));
        	responseTime.setPageID("insurance");
-       	responseTime.setBrowserName(getBrowserName());
-       	responseTime.setBrowserVersion(getBrowserVersion());
-       	responseTime.setDomainName(getWebsiteName());
+       	responseTime.setBrowserName(browserName);
+       	responseTime.setBrowserName(browserVersion);
+       	responseTime.setDomainName(websiteName);
 
-       	dbHelper.insertIntoDB(responseTime);
+       	HibernateHelper.insertIntoDB(responseTime);
        	
         return responseTime;
     }
@@ -282,15 +290,15 @@ public class ResponseTimeFirefox {
         LOGGER.info("Response time for Login Journey: " + stopWatch.getTime() + " ms");
 
         responseTime.setPageTitle(driver.getTitle());
-       	responseTime.setResponseTime(stopWatch.getTime());
-       	responseTime.setSessionID(driver.getSessionId());
-       	responseTime.setDateAdded(LocalDateTime.now());
+        responseTime.setResponseTime(String.valueOf(stopWatch.getTime()));
+       	responseTime.setSessionID(driver.getSessionId().toString());
+       	responseTime.setDateAdded(LocalDateTime.now().format(formatter));
        	responseTime.setPageID("login");
-       	responseTime.setBrowserName(getBrowserName());
-       	responseTime.setBrowserVersion(getBrowserVersion());
-       	responseTime.setDomainName(getWebsiteName());
+       	responseTime.setBrowserName(browserName);
+       	responseTime.setBrowserName(browserVersion);
+       	responseTime.setDomainName(websiteName);
 
-       	dbHelper.insertIntoDB(responseTime);
+       	HibernateHelper.insertIntoDB(responseTime);
        	
         return responseTime;
     }
@@ -319,15 +327,15 @@ public class ResponseTimeFirefox {
         LOGGER.info("Response time for PaxDetails Journey: " + stopWatch.getTime() + " ms");
 
         responseTime.setPageTitle(driver.getTitle());
-       	responseTime.setResponseTime(stopWatch.getTime());
-       	responseTime.setSessionID(driver.getSessionId());
-       	responseTime.setDateAdded(LocalDateTime.now());
+        responseTime.setResponseTime(String.valueOf(stopWatch.getTime()));
+       	responseTime.setSessionID(driver.getSessionId().toString());
+       	responseTime.setDateAdded(LocalDateTime.now().format(formatter));
        	responseTime.setPageID("traveller details");
-       	responseTime.setBrowserName(getBrowserName());
-       	responseTime.setBrowserVersion(getBrowserVersion());
-       	responseTime.setDomainName(getWebsiteName());
+       	responseTime.setBrowserName(browserName);
+       	responseTime.setBrowserName(browserVersion);
+       	responseTime.setDomainName(websiteName);
 
-       	dbHelper.insertIntoDB(responseTime);
+       	HibernateHelper.insertIntoDB(responseTime);
        	
         return responseTime;
     }
@@ -365,15 +373,15 @@ public class ResponseTimeFirefox {
        	LOGGER.info("Response time for Payment Journey: " + stopWatch.getTime() + " ms");
 
        	responseTime.setPageTitle(driver.getTitle());
-       	responseTime.setResponseTime(stopWatch.getTime());
-       	responseTime.setSessionID(driver.getSessionId());
-       	responseTime.setDateAdded(LocalDateTime.now());
+       	responseTime.setResponseTime(String.valueOf(stopWatch.getTime()));
+       	responseTime.setSessionID(driver.getSessionId().toString());
+       	responseTime.setDateAdded(LocalDateTime.now().format(formatter));
        	responseTime.setPageID("payment");
-       	responseTime.setBrowserName(getBrowserName());
-       	responseTime.setBrowserVersion(getBrowserVersion());
-       	responseTime.setDomainName(getWebsiteName());
+       	responseTime.setBrowserName(browserName);
+       	responseTime.setBrowserName(browserVersion);
+       	responseTime.setDomainName(websiteName);
 
-       	dbHelper.insertIntoDB(responseTime);
+       	HibernateHelper.insertIntoDB(responseTime);
        	
         driver.quit();
 
@@ -382,14 +390,7 @@ public class ResponseTimeFirefox {
     
     
     // Function for finding website name, browser name and browser version
-    /**
-	 * @return the websiteName
-	 */
-	public String getWebsiteName() {
-		return websiteName;
-	}
-
-	/**
+   	/**
 	 * @param websiteName the websiteName to set
 	 */
 	public void setWebsiteName(String websiteName) {
@@ -398,60 +399,10 @@ public class ResponseTimeFirefox {
 	
 	public void browserDetails() {
 		
-		String browserVersion = null;
 		Capabilities cap = driver.getCapabilities();
-		String browserName = cap.getBrowserName();
+		browserName = cap.getBrowserName();
+		browserVersion = cap.getVersion();
 		
-		// This block to find out IE Version number
-		if ("internet explorer".equalsIgnoreCase(browserName)) {
-			String uAgent = (String) ((JavascriptExecutor) driver).executeScript("return navigator.userAgent;");
-			
-			//uAgent return as "MSIE 8.0 Windows" for IE8
-			if (uAgent.contains("MSIE") && uAgent.contains("Windows")) {
-				browserVersion = uAgent.substring(uAgent.indexOf("MSIE")+5, uAgent.indexOf("Windows")-2);
-			} else if (uAgent.contains("Trident/7.0")) {
-				browserVersion = "11.0";
-			} else {
-				browserVersion = "0.0";
-			}
-		} else
-		{
-			//Browser version for Firefox and Chrome
-			browserVersion = cap.getVersion();// .split(".")[0];
-		}
-		
-		browserVersion = browserVersion.substring(0, browserVersion.indexOf("."));
-		
-		this.setBrowserName(browserName);
-		this.setBrowserVersion(browserVersion);
+		System.out.println(browserName + " " + browserVersion);
 	}
-
-	/**
-	 * @return the browserName
-	 */
-	public String getBrowserName() {
-		return browserName;
-	}
-
-	/**
-	 * @param browserName the browserName to set
-	 */
-	public void setBrowserName(String browserName) {
-		this.browserName = browserName;
-	}
-
-	/**
-	 * @return the browserVersion
-	 */
-	public String getBrowserVersion() {
-		return browserVersion;
-	}
-
-	/**
-	 * @param browserVersion the browserVersion to set
-	 */
-	public void setBrowserVersion(String browserVersion) {
-		this.browserVersion = browserVersion;
-	}
-	
 }
