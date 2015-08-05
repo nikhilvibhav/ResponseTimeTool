@@ -38,8 +38,7 @@ public class ResponseTimeFirefox {
     private StopWatch stopWatch = null;
     private WebElement element = null;
     private String websiteName;
-    private String browserName;
-    private String browserVersion;
+    private Capabilities cap;
     
     private ResponseTime responseTime = null;
     private DateTimeFormatter formatter = null;
@@ -58,8 +57,8 @@ public class ResponseTimeFirefox {
         //set date time pattern
         formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"); 
         
-        //set browser name and version
-        browserDetails();
+        //initialise driver capabilities
+        cap = driver.getCapabilities();
     	    
         LOGGER.info("Running test on Firefox");
     }
@@ -85,8 +84,8 @@ public class ResponseTimeFirefox {
        	responseTime.setSessionID(driver.getSessionId().toString());
        	responseTime.setDateAdded(LocalDateTime.now().format(formatter));
        	responseTime.setPageID("gateway");
-       	responseTime.setBrowserName(browserName);
-       	responseTime.setBrowserVersion(browserVersion);
+       	responseTime.setBrowserName(cap.getBrowserName());
+       	responseTime.setBrowserVersion(cap.getVersion());
        	responseTime.setDomainName(websiteName);
        	  	
        	HibernateHelper.insertIntoDB(responseTime);
@@ -105,7 +104,7 @@ public class ResponseTimeFirefox {
        	stopWatch.start();
 
        	// Wait for the page to load, timeout after 30 seconds
-       	(new WebDriverWait(driver, 30)).until(new ExpectedCondition<Boolean>() {
+       	(new WebDriverWait(driver, 60)).until(new ExpectedCondition<Boolean>() {
        		@Override
        		public Boolean apply(WebDriver d) {
        			return d.getTitle().toLowerCase().startsWith("trains to paris");
@@ -121,10 +120,10 @@ public class ResponseTimeFirefox {
        	responseTime.setSessionID(driver.getSessionId().toString());
        	responseTime.setDateAdded(LocalDateTime.now().format(formatter));
        	responseTime.setPageID("homepage");
-       	responseTime.setBrowserName(browserName);
-       	responseTime.setBrowserName(browserVersion);
+       	responseTime.setBrowserName(cap.getBrowserName());
+    	responseTime.setBrowserVersion(cap.getVersion());
        	responseTime.setDomainName(websiteName);
-
+       		
        	HibernateHelper.insertIntoDB(responseTime);
        	
        	return responseTime;
@@ -142,7 +141,7 @@ public class ResponseTimeFirefox {
         stopWatch.start();
 
         // Wait for the page to load, timeout after 30 seconds
-        (new WebDriverWait(driver, 30)).until(new ExpectedCondition<Boolean>() {
+        (new WebDriverWait(driver, 60)).until(new ExpectedCondition<Boolean>() {
         	@Override
         	public Boolean apply(WebDriver d) {
         		return d.getTitle().toLowerCase().startsWith("outbound train | eurostar");
@@ -158,8 +157,8 @@ public class ResponseTimeFirefox {
        	responseTime.setSessionID(driver.getSessionId().toString());
        	responseTime.setDateAdded(LocalDateTime.now().format(formatter));
        	responseTime.setPageID("outbound");
-       	responseTime.setBrowserName(browserName);
-       	responseTime.setBrowserName(browserVersion);
+       	responseTime.setBrowserName(cap.getBrowserName());
+    	responseTime.setBrowserVersion(cap.getVersion());
        	responseTime.setDomainName(websiteName);
 
        	HibernateHelper.insertIntoDB(responseTime);
@@ -177,7 +176,7 @@ public class ResponseTimeFirefox {
         stopWatch.reset();
         element.click();
 
-        (new WebDriverWait(driver, 5)).until(new ExpectedCondition<Boolean>() {
+        (new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
         	@Override
         	public Boolean apply(WebDriver webDriver) {
         		final WebElement element = webDriver.findElement(By.xpath("//*[@id='dialog-element--2']"));
@@ -190,7 +189,7 @@ public class ResponseTimeFirefox {
         stopWatch.start();
 
         // Wait for the page to load, timeout after 30 seconds
-        (new WebDriverWait(driver, 30)).until(new ExpectedCondition<Boolean>() {
+        (new WebDriverWait(driver, 60)).until(new ExpectedCondition<Boolean>() {
         	@Override
         	public Boolean apply(WebDriver d) {
         		return d.getTitle().toLowerCase().startsWith("inbound train | eurostar");
@@ -206,10 +205,13 @@ public class ResponseTimeFirefox {
        	responseTime.setSessionID(driver.getSessionId().toString());
        	responseTime.setDateAdded(LocalDateTime.now().format(formatter));
        	responseTime.setPageID("inbound");
-       	responseTime.setBrowserName(browserName);
-       	responseTime.setBrowserName(browserVersion);
+       	responseTime.setBrowserName(cap.getBrowserName());
+       	responseTime.setBrowserName(cap.getVersion());
        	responseTime.setDomainName(websiteName);
 
+       	//FOR TEST
+       	LOGGER.info("Browser version: " + responseTime.getBrowserVersion());
+       	
        	HibernateHelper.insertIntoDB(responseTime);
        	
         return responseTime;
@@ -225,7 +227,7 @@ public class ResponseTimeFirefox {
         stopWatch.reset();
         element.click();
 
-        (new WebDriverWait(driver, 5)).until(new ExpectedCondition<Boolean>() {
+        (new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
         	@Override
         	public Boolean apply(WebDriver webDriver) {
         		final WebElement element = webDriver.findElement(By.xpath("//*[@id='dialog-element']"));
@@ -238,7 +240,7 @@ public class ResponseTimeFirefox {
         stopWatch.start();
 
         // Wait for the page to load, timeout after 30 seconds
-        (new WebDriverWait(driver, 30)).until(new ExpectedCondition<Boolean>() {
+        (new WebDriverWait(driver, 60)).until(new ExpectedCondition<Boolean>() {
         	@Override
         	public Boolean apply(WebDriver d) {
         		return d.getTitle().toLowerCase().startsWith("travel extras | eurostar");
@@ -254,10 +256,10 @@ public class ResponseTimeFirefox {
        	responseTime.setSessionID(driver.getSessionId().toString());
        	responseTime.setDateAdded(LocalDateTime.now().format(formatter));
        	responseTime.setPageID("insurance");
-       	responseTime.setBrowserName(browserName);
-       	responseTime.setBrowserName(browserVersion);
+       	responseTime.setBrowserName(cap.getBrowserName());
+    	responseTime.setBrowserVersion(cap.getVersion());
        	responseTime.setDomainName(websiteName);
-
+       	
        	HibernateHelper.insertIntoDB(responseTime);
        	
         return responseTime;
@@ -278,7 +280,7 @@ public class ResponseTimeFirefox {
         stopWatch.start();
 
         // Wait for the page to load, timeout after 30 seconds
-        (new WebDriverWait(driver, 30)).until(new ExpectedCondition<Boolean>() {
+        (new WebDriverWait(driver, 60)).until(new ExpectedCondition<Boolean>() {
         	@Override
         	public Boolean apply(WebDriver d) {
         		return d.getTitle().toLowerCase().startsWith("login, create account");
@@ -294,8 +296,8 @@ public class ResponseTimeFirefox {
        	responseTime.setSessionID(driver.getSessionId().toString());
        	responseTime.setDateAdded(LocalDateTime.now().format(formatter));
        	responseTime.setPageID("login");
-       	responseTime.setBrowserName(browserName);
-       	responseTime.setBrowserName(browserVersion);
+       	responseTime.setBrowserName(cap.getBrowserName());
+    	responseTime.setBrowserVersion(cap.getVersion());
        	responseTime.setDomainName(websiteName);
 
        	HibernateHelper.insertIntoDB(responseTime);
@@ -315,7 +317,7 @@ public class ResponseTimeFirefox {
         stopWatch.start();
 
         // Wait for the page to load, timeout after 30 seconds
-        (new WebDriverWait(driver, 30)).until(new ExpectedCondition<Boolean>() {
+        (new WebDriverWait(driver, 60)).until(new ExpectedCondition<Boolean>() {
         	@Override
         	public Boolean apply(WebDriver d) {
         		return d.getTitle().toLowerCase().startsWith("traveller details | eurostar");
@@ -331,8 +333,8 @@ public class ResponseTimeFirefox {
        	responseTime.setSessionID(driver.getSessionId().toString());
        	responseTime.setDateAdded(LocalDateTime.now().format(formatter));
        	responseTime.setPageID("traveller details");
-       	responseTime.setBrowserName(browserName);
-       	responseTime.setBrowserName(browserVersion);
+       	responseTime.setBrowserName(cap.getBrowserName());
+    	responseTime.setBrowserVersion(cap.getVersion());
        	responseTime.setDomainName(websiteName);
 
        	HibernateHelper.insertIntoDB(responseTime);
@@ -361,7 +363,7 @@ public class ResponseTimeFirefox {
         stopWatch.start();
 
         // Wait for the page to load, timeout after 30 seconds
-        (new WebDriverWait(driver, 30)).until(new ExpectedCondition<Boolean>() {
+        (new WebDriverWait(driver, 60)).until(new ExpectedCondition<Boolean>() {
         	@Override
         	public Boolean apply(WebDriver d) {
         		return d.getTitle().toLowerCase().startsWith("payment | eurostar");
@@ -377,8 +379,8 @@ public class ResponseTimeFirefox {
        	responseTime.setSessionID(driver.getSessionId().toString());
        	responseTime.setDateAdded(LocalDateTime.now().format(formatter));
        	responseTime.setPageID("payment");
-       	responseTime.setBrowserName(browserName);
-       	responseTime.setBrowserName(browserVersion);
+       	responseTime.setBrowserName(cap.getBrowserName());
+    	responseTime.setBrowserVersion(cap.getVersion());
        	responseTime.setDomainName(websiteName);
 
        	HibernateHelper.insertIntoDB(responseTime);
@@ -388,21 +390,11 @@ public class ResponseTimeFirefox {
         return responseTime;
     }
     
-    
     // Function for finding website name, browser name and browser version
    	/**
 	 * @param websiteName the websiteName to set
 	 */
 	public void setWebsiteName(String websiteName) {
 		this.websiteName = websiteName;
-	}
-	
-	public void browserDetails() {
-		
-		Capabilities cap = driver.getCapabilities();
-		browserName = cap.getBrowserName();
-		browserVersion = cap.getVersion();
-		
-		System.out.println(browserName + " " + browserVersion);
 	}
 }

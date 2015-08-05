@@ -30,11 +30,10 @@ public class ResponseTimeChrome {
     private StopWatch stopWatch = null;
     private WebElement element = null;
     private String websiteName = null; 
-    private String browserName = null;
-    private String browserVersion = null;
     
     private ResponseTime responseTime = null;
     private DateTimeFormatter formatter = null;
+    private Capabilities cap;
 
     public ResponseTimeChrome() {
 
@@ -49,7 +48,7 @@ public class ResponseTimeChrome {
         stopWatch = new StopWatch();
         
         //set browser name and versions
-        browserDetails();
+        cap = driver.getCapabilities();
         
         //set date time formatter
         formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -78,8 +77,8 @@ public class ResponseTimeChrome {
        	responseTime.setSessionID(driver.getSessionId().toString());
        	responseTime.setDateAdded(LocalDateTime.now().format(formatter));
        	responseTime.setPageID("gateway");
-       	responseTime.setBrowserName(browserName);
-       	responseTime.setBrowserVersion(browserVersion);
+       	responseTime.setBrowserName(cap.getBrowserName());
+    	responseTime.setBrowserVersion(cap.getVersion());
        	responseTime.setDomainName(websiteName);
 
        	HibernateHelper.insertIntoDB(responseTime);
@@ -98,7 +97,7 @@ public class ResponseTimeChrome {
        	stopWatch.start();
 
        	// Wait for the page to load, timeout after 30 seconds
-       	(new WebDriverWait(driver, 30)).until(new ExpectedCondition<Boolean>() {
+       	(new WebDriverWait(driver, 60)).until(new ExpectedCondition<Boolean>() {
        		@Override
        		public Boolean apply(WebDriver d) {
        			return d.getTitle().toLowerCase().startsWith("trains to paris");
@@ -114,8 +113,8 @@ public class ResponseTimeChrome {
        	responseTime.setSessionID(driver.getSessionId().toString());
        	responseTime.setDateAdded(LocalDateTime.now().format(formatter));
        	responseTime.setPageID("homepage");
-       	responseTime.setBrowserName(browserName);
-       	responseTime.setBrowserVersion(browserVersion);
+       	responseTime.setBrowserName(cap.getBrowserName());
+    	responseTime.setBrowserVersion(cap.getVersion());
        	responseTime.setDomainName(websiteName);
        	
        	HibernateHelper.insertIntoDB(responseTime);
@@ -135,7 +134,7 @@ public class ResponseTimeChrome {
         stopWatch.start();
 
         // Wait for the page to load, timeout after 30 seconds
-        (new WebDriverWait(driver, 30)).until(new ExpectedCondition<Boolean>() {
+        (new WebDriverWait(driver, 60)).until(new ExpectedCondition<Boolean>() {
         	@Override
         	public Boolean apply(WebDriver d) {
         		return d.getTitle().toLowerCase().startsWith("outbound train | eurostar");
@@ -151,8 +150,8 @@ public class ResponseTimeChrome {
        	responseTime.setSessionID(driver.getSessionId().toString());
        	responseTime.setDateAdded(LocalDateTime.now().format(formatter));
        	responseTime.setPageID("outbound");
-       	responseTime.setBrowserName(browserName);
-       	responseTime.setBrowserVersion(browserVersion);
+       	responseTime.setBrowserName(cap.getBrowserName());
+    	responseTime.setBrowserVersion(cap.getVersion());
        	responseTime.setDomainName(websiteName);
 
        	HibernateHelper.insertIntoDB(responseTime);
@@ -170,7 +169,7 @@ public class ResponseTimeChrome {
         stopWatch.reset();
         element.click();
 
-        (new WebDriverWait(driver, 5)).until(new ExpectedCondition<Boolean>() {
+        (new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
         	@Override
         	public Boolean apply(WebDriver webDriver) {
         		final WebElement element = webDriver.findElement(By.xpath("//*[@id='dialog-element--2']"));
@@ -183,7 +182,7 @@ public class ResponseTimeChrome {
         stopWatch.start();
 
         // Wait for the page to load, timeout after 30 seconds
-        (new WebDriverWait(driver, 30)).until(new ExpectedCondition<Boolean>() {
+        (new WebDriverWait(driver, 60)).until(new ExpectedCondition<Boolean>() {
         	@Override
         	public Boolean apply(WebDriver d) {
         		return d.getTitle().toLowerCase().startsWith("inbound train | eurostar");
@@ -199,8 +198,8 @@ public class ResponseTimeChrome {
        	responseTime.setSessionID(driver.getSessionId().toString());
        	responseTime.setDateAdded(LocalDateTime.now().format(formatter));
        	responseTime.setPageID("inbound");
-       	responseTime.setBrowserName(browserName);
-       	responseTime.setBrowserVersion(browserVersion);
+       	responseTime.setBrowserName(cap.getBrowserName());
+    	responseTime.setBrowserVersion(cap.getVersion());
        	responseTime.setDomainName(websiteName);
 
        	HibernateHelper.insertIntoDB(responseTime);
@@ -218,7 +217,7 @@ public class ResponseTimeChrome {
         stopWatch.reset();
         element.click();
 
-        (new WebDriverWait(driver, 5)).until(new ExpectedCondition<Boolean>() {
+        (new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
         	@Override
         	public Boolean apply(WebDriver webDriver) {
         		final WebElement element = webDriver.findElement(By.xpath("//*[@id='dialog-element']"));
@@ -231,7 +230,7 @@ public class ResponseTimeChrome {
         stopWatch.start();
 
         // Wait for the page to load, timeout after 30 seconds
-        (new WebDriverWait(driver, 30)).until(new ExpectedCondition<Boolean>() {
+        (new WebDriverWait(driver, 60)).until(new ExpectedCondition<Boolean>() {
         	@Override
         	public Boolean apply(WebDriver d) {
         		return d.getTitle().toLowerCase().startsWith("travel extras | eurostar");
@@ -247,9 +246,10 @@ public class ResponseTimeChrome {
        	responseTime.setSessionID(driver.getSessionId().toString());
        	responseTime.setDateAdded(LocalDateTime.now().format(formatter));
        	responseTime.setPageID("insurance");
-       	responseTime.setBrowserName(browserName);
-       	responseTime.setBrowserVersion(browserVersion);
+       	responseTime.setBrowserName(cap.getBrowserName());
+    	responseTime.setBrowserVersion(cap.getVersion());
        	responseTime.setDomainName(websiteName);
+       	
        	HibernateHelper.insertIntoDB(responseTime);
        	
         return responseTime;
@@ -270,7 +270,7 @@ public class ResponseTimeChrome {
         stopWatch.start();
 
         // Wait for the page to load, timeout after 30 seconds
-        (new WebDriverWait(driver, 30)).until(new ExpectedCondition<Boolean>() {
+        (new WebDriverWait(driver, 60)).until(new ExpectedCondition<Boolean>() {
         	@Override
         	public Boolean apply(WebDriver d) {
         		return d.getTitle().toLowerCase().startsWith("login, create account");
@@ -286,8 +286,8 @@ public class ResponseTimeChrome {
        	responseTime.setSessionID(driver.getSessionId().toString());
        	responseTime.setDateAdded(LocalDateTime.now().format(formatter));
        	responseTime.setPageID("login");
-       	responseTime.setBrowserName(browserName);
-       	responseTime.setBrowserVersion(browserVersion);
+       	responseTime.setBrowserName(cap.getBrowserName());
+    	responseTime.setBrowserVersion(cap.getVersion());
        	responseTime.setDomainName(websiteName);
 
        	HibernateHelper.insertIntoDB(responseTime);
@@ -307,7 +307,7 @@ public class ResponseTimeChrome {
         stopWatch.start();
 
         // Wait for the page to load, timeout after 30 seconds
-        (new WebDriverWait(driver, 30)).until(new ExpectedCondition<Boolean>() {
+        (new WebDriverWait(driver, 60)).until(new ExpectedCondition<Boolean>() {
         	@Override
         	public Boolean apply(WebDriver d) {
         		return d.getTitle().toLowerCase().startsWith("traveller details | eurostar");
@@ -323,8 +323,8 @@ public class ResponseTimeChrome {
        	responseTime.setSessionID(driver.getSessionId().toString());
        	responseTime.setDateAdded(LocalDateTime.now().format(formatter));
        	responseTime.setPageID("traveller details");
-       	responseTime.setBrowserName(browserName);
-       	responseTime.setBrowserVersion(browserVersion);
+       	responseTime.setBrowserName(cap.getBrowserName());
+    	responseTime.setBrowserVersion(cap.getVersion());
        	responseTime.setDomainName(websiteName);
        	
        	HibernateHelper.insertIntoDB(responseTime);
@@ -353,7 +353,7 @@ public class ResponseTimeChrome {
         stopWatch.start();
 
         // Wait for the page to load, timeout after 30 seconds
-        (new WebDriverWait(driver, 30)).until(new ExpectedCondition<Boolean>() {
+        (new WebDriverWait(driver, 60)).until(new ExpectedCondition<Boolean>() {
         	@Override
         	public Boolean apply(WebDriver d) {
         		return d.getTitle().toLowerCase().startsWith("payment | eurostar");
@@ -369,8 +369,8 @@ public class ResponseTimeChrome {
        	responseTime.setSessionID(driver.getSessionId().toString());
        	responseTime.setDateAdded(LocalDateTime.now().format(formatter));
        	responseTime.setPageID("payment");
-       	responseTime.setBrowserName(browserName);
-       	responseTime.setBrowserVersion(browserVersion);
+       	responseTime.setBrowserName(cap.getBrowserName());
+    	responseTime.setBrowserVersion(cap.getVersion());
        	responseTime.setDomainName(websiteName);
 
        	HibernateHelper.insertIntoDB(responseTime);
@@ -379,16 +379,7 @@ public class ResponseTimeChrome {
 
         return responseTime;
     }
-	
-    public void browserDetails() {
-		
-    	Capabilities cap = driver.getCapabilities();
-		browserName = cap.getBrowserName();
-		browserVersion = cap.getVersion();
-		
-		System.out.println(browserName + " " + browserVersion);
-	}
-    
+
     /**
 	 * @param websiteName the websiteName to set
 	 */
