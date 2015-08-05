@@ -206,7 +206,7 @@ public class ResponseTimeFirefox {
        	responseTime.setDateAdded(LocalDateTime.now().format(formatter));
        	responseTime.setPageID("inbound");
        	responseTime.setBrowserName(cap.getBrowserName());
-       	responseTime.setBrowserName(cap.getVersion());
+       	responseTime.setBrowserVersion(cap.getVersion());
        	responseTime.setDomainName(websiteName);
 
        	//FOR TEST
