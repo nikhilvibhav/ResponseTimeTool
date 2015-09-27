@@ -2,6 +2,8 @@ package com.estar.responsetimetool.helper;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.commons.lang3.time.StopWatch;
 import org.apache.logging.log4j.LogManager;
@@ -29,7 +31,7 @@ public class ResponseTimeHelper {
     private RemoteWebDriver driver = null;
     private StopWatch stopWatch = null;
     private WebElement element = null;
-    private String websiteName;
+    private String websiteName = "http://www.eurostar.com";
     private Capabilities cap;
     
     private ResponseTime responseTime = null;
@@ -54,6 +56,24 @@ public class ResponseTimeHelper {
     	    
         LOGGER.info("Running test on Firefox");
     }
+
+	public HashMap startJourney() throws InterruptedException {
+		HashMap responseMaps = new HashMap();
+		try {
+			responseMaps.put(initJourney().getPageID(), initJourney().getResponseTime());
+			responseMaps.put(homeJourney().getPageID(), homeJourney().getResponseTime());
+			responseMaps.put(outboundJourney().getPageID(), outboundJourney().getResponseTime());
+			responseMaps.put(inboundJourney().getPageID(), inboundJourney().getResponseTime());
+			responseMaps.put(userLoginJourney().getPageID(), userLoginJourney().getResponseTime());
+			responseMaps.put(paxDetailsJourney().getPageID(), paxDetailsJourney().getResponseTime());
+			responseMaps.put(paymentJourney().getPageID(), paymentJourney().getResponseTime());
+			return responseMaps;
+		} catch (Exception ex) {
+			LOGGER.error("Journey was not successful.");
+			LOGGER.error(ex.getMessage());
+			return null;
+		}
+	}
 
     public ResponseTime initJourney() throws InterruptedException {
         
