@@ -1,3 +1,4 @@
+/*
 package com.estar.responsetimetool.helper;
 
 import java.time.LocalDateTime;
@@ -18,9 +19,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.estar.responsetimetool.pojo.ResponseTime;
 
+*/
 /**
  * Created by nvibhav on 30-Jul-15.
- */
+ *//*
+
 
 public class ResponseTimeChrome {
 
@@ -165,19 +168,22 @@ public class ResponseTimeChrome {
 
         responseTime = new ResponseTime();
 
-        element = driver.findElement(By.xpath("//*[@id='standard-booking-path-daily-view-form']/div/div[3]/table/tbody/tr[8]/td[7]"));
+        element = driver.findElement(By.xpath("/*/
+/*[@id='standard-booking-path-daily-view-form']/div/div[3]/table/tbody/tr[8]/td[7]"));
         stopWatch.reset();
         element.click();
 
         (new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
         	@Override
         	public Boolean apply(WebDriver webDriver) {
-        		final WebElement element = webDriver.findElement(By.xpath("//*[@id='dialog-element--2']"));
+        		final WebElement element = webDriver.findElement(By.xpath("/*/
+/*[@id='dialog-element--2']"));
         		return element.isEnabled();
         	}
         });
 
-        element = driver.findElement(By.xpath("//*[@id='dialog-element--2']"));
+        element = driver.findElement(By.xpath("/*/
+/*[@id='dialog-element--2']"));
         element.click();
         stopWatch.start();
 
@@ -213,19 +219,22 @@ public class ResponseTimeChrome {
 
         responseTime = new ResponseTime();
 
-        element = driver.findElement(By.xpath("//*[@id='standard-booking-path-daily-view-form']/div/div[3]/table/tbody/tr[8]/td[5]"));
+        element = driver.findElement(By.xpath("/*/
+/*[@id='standard-booking-path-daily-view-form']/div/div[3]/table/tbody/tr[8]/td[5]"));
         stopWatch.reset();
         element.click();
 
         (new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
         	@Override
         	public Boolean apply(WebDriver webDriver) {
-        		final WebElement element = webDriver.findElement(By.xpath("//*[@id='dialog-element']"));
+        		final WebElement element = webDriver.findElement(By.xpath("/*/
+/*[@id='dialog-element']"));
         		return element.isEnabled();
         	}
         });
 
-        element = driver.findElement(By.xpath("//*[@id='dialog-element']"));
+        element = driver.findElement(By.xpath("/*/
+/*[@id='dialog-element']"));
         element.click();
         stopWatch.start();
 
@@ -262,10 +271,12 @@ public class ResponseTimeChrome {
         responseTime = new ResponseTime();
 
         stopWatch.reset();
-        element = driver.findElement(By.xpath("//*[@id='dialog-element--2']"));
+        element = driver.findElement(By.xpath("/*/
+/*[@id='dialog-element--2']"));
         element.click();
 
-        element = driver.findElement(By.xpath("//*[@id='dialog-dialog-element--2']/div[2]/ul/li[1]/a"));
+        element = driver.findElement(By.xpath("/*/
+/*[@id='dialog-dialog-element--2']/div[2]/ul/li[1]/a"));
         element.click();
         stopWatch.start();
 
@@ -302,7 +313,8 @@ public class ResponseTimeChrome {
         responseTime = new ResponseTime();
 
         stopWatch.reset();
-        element = driver.findElement(By.xpath("//*[@id='dialog-element']"));
+        element = driver.findElement(By.xpath("/*/
+/*[@id='dialog-element']"));
         element.click();
         stopWatch.start();
 
@@ -340,15 +352,19 @@ public class ResponseTimeChrome {
 
         stopWatch.reset();
 
-       	Select dropdown = new Select(driver.findElement(By.xpath("//*[@id='edit-adult-1-title']")));
+       	Select dropdown = new Select(driver.findElement(By.xpath("/*/
+/*[@id='edit-adult-1-title']")));
        	dropdown.selectByValue("Mr");
 
-        element = driver.findElement(By.xpath("//*[@id='edit-adult-1-first-name']"));
+        element = driver.findElement(By.xpath("/*/
+/*[@id='edit-adult-1-first-name']"));
         element.sendKeys("John");
-        element = driver.findElement(By.xpath("//*[@id='edit-adult-1-last-name']"));
+        element = driver.findElement(By.xpath("/*/
+/*[@id='edit-adult-1-last-name']"));
         element.sendKeys("Smith");
 
-        element = driver.findElement(By.xpath("//*[@id='dialog-element']"));
+        element = driver.findElement(By.xpath("/*/
+/*[@id='dialog-element']"));
         element.click();
         stopWatch.start();
 
@@ -380,10 +396,13 @@ public class ResponseTimeChrome {
         return responseTime;
     }
 
-    /**
+    */
+/**
 	 * @param websiteName the websiteName to set
-	 */
+	 *//*
+
 	public void setWebsiteName(String websiteName) {
 		this.websiteName = websiteName;
 	}
 }
+*/

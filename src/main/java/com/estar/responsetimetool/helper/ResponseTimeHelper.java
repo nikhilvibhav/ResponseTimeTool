@@ -1,22 +1,15 @@
 package com.estar.responsetimetool.helper;
 
-import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.concurrent.TimeUnit;
-
-import javax.swing.text.DateFormatter;
 
 import org.apache.commons.lang3.time.StopWatch;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.poi.hssf.util.HSSFColor.BROWN;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -24,15 +17,14 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.estar.responsetimetool.pojo.ResponseTime;
-import com.google.common.base.Objects;
 
 /**
  * Created by nvibhav on 09-Jun-15.
  */
 @SuppressWarnings("unused")
-public class ResponseTimeFirefox {
+public class ResponseTimeHelper {
 
-	final static Logger LOGGER = LogManager.getLogger(ResponseTimeFirefox.class.getName());
+	private final static Logger LOGGER = LogManager.getLogger(ResponseTimeHelper.class.getName());
 	
     private RemoteWebDriver driver = null;
     private StopWatch stopWatch = null;
@@ -43,7 +35,7 @@ public class ResponseTimeFirefox {
     private ResponseTime responseTime = null;
     private DateTimeFormatter formatter = null;
     
-	public ResponseTimeFirefox() {
+	public ResponseTimeHelper() {
 
         //Instantiate the selenium RC server
         //FirefoxBinary binary = new FirefoxBinary(new File("/usr/local/firefox"));
