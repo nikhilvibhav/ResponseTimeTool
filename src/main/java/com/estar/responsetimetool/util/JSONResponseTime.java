@@ -1,10 +1,8 @@
 package com.estar.responsetimetool.util;
 
-import com.estar.responsetimetool.pojo.ResponseTime;
 import org.json.simple.JSONObject;
 
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by Nikhil on 27-09-2015.
