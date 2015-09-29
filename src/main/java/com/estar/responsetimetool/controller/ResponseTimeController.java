@@ -1,7 +1,6 @@
 package com.estar.responsetimetool.controller;
 
 import com.estar.responsetimetool.helper.ResponseTimeHelper;
-import com.estar.responsetimetool.util.JSONResponseTime;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,9 +24,9 @@ public class ResponseTimeController {
     }
 
     @RequestMapping(value="/get-response-times")
-    public @ResponseBody JSONResponseTime getResponseTimes() throws InterruptedException {
+    public @ResponseBody HashMap getResponseTimes() throws InterruptedException {
         LOGGER.info("***********Within the getResponseTime method***********");
         HashMap responseMap = responseTimeHelper.startJourney();
-        return new JSONResponseTime(responseMap);
+        return responseMap;
     }
 }
